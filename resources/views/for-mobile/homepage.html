@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CeMas Mobile</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Fade animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: all 0.45s ease-out;
+        }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar shadow */
+        .navbar-mobile {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(6px);
+        }
+
+        .dropdown-anim {
+            transform-origin: top right;
+            transform: scale(0.95) translateY(-8px);
+            opacity: 0;
+            transition: all 0.18s ease-out;
+        }
+        .dropdown-open {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+    <!-- NAVBAR MOBILE -->
+    <nav class="fixed top-0 left-0 w-full z-20 navbar-mobile shadow-sm h-14 flex items-center px-4 justify-between">
+        <!-- Menu Icon -->
+        <button onclick="toggleMenu()" class="text-gray-700 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <span class="text-xl font-bold text-blue-600">CeMas</span>
+
+        <!-- Profil -->
+        <button onclick="toggleProfile()" class="focus:outline-none">
+            <img src="https://ui-avatars.com/api/?name=User"
+                class="w-9 h-9 rounded-full shadow border">
+        </button>
+    </nav>
+
+    <!-- MENU DROPDOWN LEFT -->
+    <div id="mobileMenu"
+        class="fixed top-14 left-0 w-56 bg-white shadow-lg border border-gray-100 rounded-r-xl p-4 hidden dropdown-anim z-30">
+
+        <a href="#" class="block py-2 text-gray-700 text-sm">Homepage</a>
+        <a href="#toko" class="block py-2 text-gray-700 text-sm">Daftar Toko</a>
+        <a href="#tentang" class="block py-2 text-gray-700 text-sm">Tentang Kami</a>
+    </div>
+
+    <!-- PROFILE DROPDOWN -->
+    <div id="mobileProfile"
+        class="fixed top-14 right-2 w-48 bg-white shadow-lg border border-gray-100 rounded-xl py-2 hidden dropdown-anim z-30">
+
+        <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Edit Akun</a>
+        <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Riwayat Pesanan</a>
+
+        <button class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+            Logout
+        </button>
+    </div>
+
+    <!-- HERO MOBILE -->
+    <section class="pt-20 pb-10 px-5 fade-in">
+        <h1 class="text-3xl font-extrabold text-gray-900 leading-snug">
+            Platform UMKM Warga Aston Villa
+        </h1>
+
+        <p class="mt-3 text-gray-600 text-base leading-relaxed">
+            Belanja kebutuhan harian, makanan, dan jasa dari tetangga Anda sendiri.
+            Dukung UMKM lingkungan melalui CeMas.
+        </p>
+
+        <a href="#toko"
+            class="mt-6 inline-block bg-blue-600 text-white px-5 py-3 rounded-full shadow text-sm font-semibold">
+            Jelajahi Toko →
+        </a>
+
+        <div class="mt-8">
+            <img src="https://picsum.photos/500/300"
+                class="w-full rounded-lg shadow-md" alt="">
+        </div>
+    </section>
+
+    <!-- DAFTAR TOKO MOBILE -->
+    <section id="toko" class="py-10 px-5 bg-blue-50 fade-in">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Toko Warga</h2>
+
+        <!-- CARD LIST -->
+        <div class="space-y-6">
+
+            <!-- CARD -->
+            <div class="bg-white rounded-xl p-4 shadow-md border">
+                <img src="https://picsum.photos/400/200"
+                    class="w-full h-36 object-cover rounded-lg mb-3">
+
+                <h3 class="text-lg font-semibold">Toko Sembako Bu Siti</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                    Menjual kebutuhan harian seperti beras, minyak, gula, dan lainnya.
+                </p>
+
+                <p class="text-green-600 font-semibold text-xs mt-2">Kategori: Sembako</p>
+
+                <a href="#"
+                    class="block mt-2 text-blue-600 font-medium text-sm">
+                    Lihat Detail →
+                </a>
+            </div>
+
+            <!-- CARD -->
+            <div class="bg-white rounded-xl p-4 shadow-md border">
+                <img src="https://picsum.photos/400/201"
+                    class="w-full h-36 object-cover rounded-lg mb-3">
+
+                <h3 class="text-lg font-semibold">Nasi Uduk Bang Jali</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                    Nasi Uduk khas Betawi, lauk lengkap, segar setiap pagi.
+                </p>
+
+                <p class="text-green-600 font-semibold text-xs mt-2">Kategori: Kuliner</p>
+
+                <a href="#"
+                    class="block mt-2 text-blue-600 font-medium text-sm">
+                    Lihat Detail →
+                </a>
+            </div>
+
+            <!-- CARD -->
+            <div class="bg-white rounded-xl p-4 shadow-md border">
+                <img src="https://picsum.photos/400/202"
+                    class="w-full h-36 object-cover rounded-lg mb-3">
+
+                <h3 class="text-lg font-semibold">Laundry Ekspres</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                    Layanan cuci cepat, bersih, gratis antar jemput wilayah RT.
+                </p>
+
+                <p class="text-green-600 font-semibold text-xs mt-2">Kategori: Jasa</p>
+
+                <a href="#"
+                    class="block mt-2 text-blue-600 font-medium text-sm">
+                    Lihat Detail →
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TENTANG KAMI MOBILE -->
+    <section id="tentang" class="py-14 px-5 fade-in">
+        <h2 class="text-2xl font-bold text-gray-900 text-center">Tentang CeMas</h2>
+        <p class="text-gray-600 text-base text-center mt-3 mb-10">
+            Platform E-Marketplace untuk warga Aston Villa yang membantu UMKM
+            memasarkan produk dan jasa secara mudah.
+        </p>
+
+        <div class="space-y-6">
+
+            <div class="bg-white p-5 rounded-xl shadow border text-center">
+                <h3 class="font-bold text-lg">Memberdayakan UMKM</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                    Mendukung warga memasarkan produk melalui platform yang mudah digunakan.
+                </p>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl shadow border text-center">
+                <h3 class="font-bold text-lg">Untuk Komunitas</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                    Transaksi lebih dekat dan mendukung ekonomi lokal.
+                </p>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl shadow border text-center">
+                <h3 class="font-bold text-lg">Aman & Terverifikasi</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                    Toko diverifikasi oleh pengurus RT untuk jaminan keamanan belanja.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-6 bg-gray-900 text-center text-white text-sm">
+        © 2025 CeMas — Warga Aston Villa
+    </footer>
+
+    <script>
+        // Fade-in observer
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('show');
+            });
+        });
+        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+        // Menus
+        function toggleMenu() {
+            let m = document.getElementById('mobileMenu');
+            if (m.classList.contains('hidden')) {
+                m.classList.remove('hidden');
+                setTimeout(() => m.classList.add('dropdown-open'), 10);
+            } else {
+                m.classList.remove('dropdown-open');
+                setTimeout(() => m.classList.add('hidden'), 150);
+            }
+        }
+
+        function toggleProfile() {
+            let p = document.getElementById('mobileProfile');
+            if (p.classList.contains('hidden')) {
+                p.classList.remove('hidden');
+                setTimeout(() => p.classList.add('dropdown-open'), 10);
+            } else {
+                p.classList.remove('dropdown-open');
+                setTimeout(() => p.classList.add('hidden'), 150);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

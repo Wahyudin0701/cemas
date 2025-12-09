@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk - CeMas</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all 0.45s ease;
+        }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm sticky top-0 z-20">
+        <div class="h-14 px-4 flex items-center">
+
+            <button onclick="history.back()" 
+                class="text-gray-600 hover:text-gray-800 text-lg">
+                ←
+            </button>
+
+            <h1 class="mx-auto text-xl font-bold text-blue-600 select-none">
+                CeMas
+            </h1>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="px-4 py-4 fade-in">
+
+        <!-- FOTO PRODUK -->
+        <div class="w-full h-60 rounded-xl overflow-hidden shadow border bg-gray-100">
+            <img src="https://placehold.co/600x600/0ea5e9/ffffff?text=Produk"
+                class="w-full h-full object-cover">
+        </div>
+
+        <!-- INFORMASI PRODUK -->
+        <div class="mt-6 space-y-4">
+
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Beras Premium 5kg</h2>
+                <p class="text-blue-600 font-bold text-3xl mt-1">Rp65.000</p>
+            </div>
+
+            <div class="space-y-2 text-sm text-gray-700">
+                <p><span class="font-semibold">Kategori:</span> Barang</p>
+
+                <div>
+                    <p class="font-semibold mb-1">Deskripsi Produk:</p>
+                    <p class="bg-gray-100 p-3 rounded-xl leading-relaxed text-gray-600">
+                        Beras premium kualitas terbaik, cocok untuk kebutuhan rumah tangga.
+                        Tekstur pulen dan wangi alami.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUTTON SECTION: STICKY BOTTOM -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-4 flex space-x-3">
+
+        <a href="{{ route('penjual.edit-produk') }}"
+           class="w-1/2 bg-blue-600 text-white py-3 rounded-xl font-semibold text-sm text-center
+                  hover:bg-blue-700 shadow">
+            Edit Produk
+        </a>
+
+        <button onclick="openDeleteModal()"
+            class="w-1/2 bg-red-600 text-white py-3 rounded-xl font-semibold text-sm
+                   hover:bg-red-700 shadow">
+            Hapus
+        </button>
+
+    </div>
+
+    <!-- MODAL HAPUS -->
+    <div id="deleteModal"
+        class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden items-center justify-center p-6 z-30">
+
+        <div class="bg-white w-full max-w-xs rounded-xl shadow-lg p-6">
+
+            <h3 class="text-lg font-bold text-gray-900">Hapus Produk?</h3>
+            <p class="text-gray-600 mt-2 text-sm">
+                Produk ini akan dihapus permanen dari toko Anda.
+                Yakin ingin melanjutkan?
+            </p>
+
+            <div class="mt-6 flex justify-end gap-3 text-sm">
+
+                <button onclick="closeDeleteModal()"
+                    class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                    Batal
+                </button>
+
+                <button
+                    class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                    Hapus
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Fade in animation
+        setTimeout(() => {
+            document.querySelector('.fade-in').classList.add('show');
+        }, 120);
+
+        // Modal
+        function openDeleteModal() {
+            const modal = document.getElementById('deleteModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDeleteModal() {
+            const modal = document.getElementById('deleteModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+
+</body>
+</html>

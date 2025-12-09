@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Produk - CeMas</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all 0.45s ease;
+        }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating-label label {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm sticky top-0 z-20">
+        <div class="px-4 h-14 flex items-center">
+
+            <button onclick="history.back()" 
+                class="text-sm text-gray-600 hover:text-gray-800 flex items-center">
+                ←
+            </button>
+
+            <h1 class="mx-auto text-xl font-bold text-blue-600 select-none">
+                CeMas
+            </h1>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="px-4 py-6 fade-in">
+
+        <h1 class="text-xl font-bold text-gray-900 mb-5">Edit Produk</h1>
+
+        <!-- CARD MOBILE -->
+        <div class="bg-white rounded-2xl shadow p-5">
+
+            <!-- FOTO PRODUK -->
+            <div class="flex flex-col items-center">
+
+                <!-- PREVIEW -->
+                <div class="w-full max-w-xs h-40 rounded-xl overflow-hidden border shadow bg-gray-100">
+                    <img id="previewFoto"
+                        src="https://placehold.co/600x600/0ea5e9/ffffff?text=Produk"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <!-- INPUT -->
+                <label
+                    class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow text-xs cursor-pointer">
+                    Ganti Foto Produk
+                    <input type="file" accept="image/*" class="hidden" onchange="previewImg(event)">
+                </label>
+
+                <p class="text-[11px] text-gray-500 mt-2">* Maksimal 2MB • JPG/PNG</p>
+            </div>
+
+            <!-- FORM -->
+            <div class="mt-6 space-y-5">
+
+                <!-- NAMA PRODUK -->
+                <div class="relative floating-label">
+                    <input type="text" placeholder=" " value="Beras Premium 5kg"
+                        class="peer w-full px-4 py-3 border rounded-xl text-sm
+                        focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+                    
+                    <label class="absolute left-4 top-3 bg-white px-1 text-gray-500 text-xs
+                        peer-focus:text-blue-600 peer-focus:-top-2
+                        peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-blue-600">
+                        Nama Produk
+                    </label>
+                </div>
+
+                <!-- HARGA -->
+                <div class="relative floating-label">
+                    <input type="number" placeholder=" " value="65000"
+                        class="peer w-full px-4 py-3 border rounded-xl text-sm
+                        focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+                    
+                    <label class="absolute left-4 top-3 bg-white px-1 text-gray-500 text-xs
+                        peer-focus:-top-2 peer-focus:text-blue-600
+                        peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-blue-600">
+                        Harga Produk (Rp)
+                    </label>
+                </div>
+
+                <!-- STOK -->
+                <div class="relative floating-label">
+                    <input type="number" placeholder=" " value="20"
+                        class="peer w-full px-4 py-3 border rounded-xl text-sm
+                        focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+                    
+                    <label class="absolute left-4 top-3 bg-white px-1 text-gray-500 text-xs
+                        peer-focus:-top-2 peer-focus:text-blue-600
+                        peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-blue-600">
+                        Stok Produk
+                    </label>
+                </div>
+
+                <!-- KATEGORI -->
+                <div class="relative floating-label">
+                    <select
+                        class="peer w-full px-4 py-3 border rounded-xl text-sm appearance-none
+                        focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+                        <option selected>Barang</option>
+                        <option>Jasa</option>
+                        <option>Paket</option>
+                        <option>Lainnya</option>
+                    </select>
+
+                    <label class="absolute left-4 top-3 bg-white px-1 text-gray-500 text-xs
+                        peer-focus:-top-2 peer-focus:text-blue-600">
+                        Kategori Produk
+                    </label>
+
+                    <span class="absolute right-4 top-4 text-gray-400 text-xs">▼</span>
+                </div>
+
+                <!-- DESKRIPSI -->
+                <div class="relative floating-label">
+                    <textarea rows="4" placeholder=" "
+                        class="peer w-full px-4 py-3 border rounded-xl text-sm resize-none
+                        focus:ring-blue-500 focus:border-blue-500 shadow-sm">Beras premium kualitas terbaik, cocok untuk kebutuhan rumah tangga.</textarea>
+                    
+                    <label class="absolute left-4 top-3 bg-white px-1 text-gray-500 text-xs
+                        peer-focus:-top-2 peer-focus:text-blue-600 
+                        peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-blue-600">
+                        Deskripsi Produk
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BUTTON ACTION -->
+        <div class="mt-6">
+            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold shadow">
+                Simpan Perubahan
+            </button>
+        </div>
+
+        <button onclick="history.back()"
+            class="w-full mt-3 py-3 bg-gray-200 text-gray-700 rounded-xl text-sm">
+            Batal
+        </button>
+
+    </div>
+
+    <script>
+        function previewImg(event) {
+            let reader = new FileReader();
+            reader.onload = () => {
+                document.getElementById('previewFoto').src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        setTimeout(() => {
+            document.querySelector('.fade-in').classList.add('show');
+        }, 100);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Toko (Mobile) - CeMas</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.45s ease-out;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Bottom sheet (keranjang) */
+        #cartSheet {
+            transition: transform 0.3s ease-out;
+            transform: translateY(100%);
+        }
+
+        #cartOverlay {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+    <!-- NAV MOBILE -->
+    <nav class="fixed top-0 left-0 w-full h-14 bg-white shadow flex items-center px-4 z-30">
+        <a href="/" class="flex items-center text-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" fill="none"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Kembali
+        </a>
+
+        <span class="mx-auto text-xl font-bold text-blue-600">CeMas</span>
+    </nav>
+
+    <!-- FOTO TOKO -->
+    <header class="pt-14">
+        <img src="https://picsum.photos/600/350"
+            class="w-full h-60 object-cover">
+    </header>
+
+    <!-- NAMA TOKO -->
+    <section class="px-4 mt-6 fade-in">
+        <h1 class="text-3xl font-bold text-gray-900">Toko Sembako Bu Siti</h1>
+        <p class="text-gray-600 mt-1">Kategori: Sembako • Kebutuhan Pokok</p>
+    </section>
+
+    <!-- INFO TOKO -->
+    <section class="px-4 mt-5 fade-in">
+        <div class="bg-white rounded-xl p-5 shadow border">
+            <h2 class="text-xl font-bold text-gray-900 mb-3">Tentang Toko</h2>
+            <p class="text-gray-700 text-sm leading-relaxed">
+                Menyediakan kebutuhan pokok warga Aston Villa. Melayani eceran & grosir.
+                Harga terjangkau dan lokasi mudah dijangkau.
+            </p>
+
+            <div class="mt-5 space-y-3">
+                <div class="bg-blue-50 p-3 rounded-lg">
+                    <p class="text-gray-600 text-xs">Pemilik</p>
+                    <p class="font-semibold text-gray-900">Bu Siti</p>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg">
+                    <p class="text-gray-600 text-xs">Alamat</p>
+                    <p class="font-semibold text-gray-900">Jalan Kenanga No. 5</p>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg">
+                    <p class="text-gray-600 text-xs">Kontak</p>
+                    <p class="font-semibold text-gray-900">085xxxxxxx88</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUK -->
+    <section class="px-4 mt-8 fade-in mb-24">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Produk Tersedia</h2>
+
+        <div class="space-y-4">
+
+            <!-- CARD PRODUK -->
+            <div class="bg-white rounded-xl shadow border overflow-hidden">
+                <img src="https://picsum.photos/400/300"
+                    class="w-full h-36 object-cover">
+
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 text-sm">Beras Premium 5kg</h3>
+                    <p class="text-blue-600 text-lg font-bold">Rp65.000</p>
+
+                    <button onclick="addToCart('Beras Premium 5kg', 65000)"
+                        class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm">
+                        + Keranjang
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow border overflow-hidden">
+                <img src="https://picsum.photos/400/301"
+                    class="w-full h-36 object-cover">
+
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 text-sm">Minyak Goreng 2L</h3>
+                    <p class="text-blue-600 text-lg font-bold">Rp32.000</p>
+
+                    <button onclick="addToCart('Minyak Goreng 2L', 32000)"
+                        class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm">
+                        + Keranjang
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow border overflow-hidden">
+                <img src="https://picsum.photos/400/302"
+                    class="w-full h-36 object-cover">
+
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 text-sm">Gula Pasir 1kg</h3>
+                    <p class="text-blue-600 text-lg font-bold">Rp16.500</p>
+
+                    <button onclick="addToCart('Gula Pasir 1kg', 16500)"
+                        class="mt-3 w-full bg-blue-600 text-white rounded-lg py-2 text-sm">
+                        + Keranjang
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- KERANJANG BOTTOM SHEET -->
+    <div id="cartOverlay" class="fixed inset-0 bg-black/40 z-40"></div>
+
+    <div id="cartSheet"
+        class="fixed bottom-0 left-0 w-full bg-white rounded-t-2xl shadow-xl z-50 p-5 pb-28">
+
+        <div class="flex justify-between items-center mb-3">
+            <h2 class="text-lg font-bold text-gray-900">Keranjang</h2>
+            <button onclick="toggleCart(false)" class="text-gray-600 text-xl">✕</button>
+        </div>
+
+        <div id="cartItems" class="space-y-3 max-h-72 overflow-y-auto"></div>
+
+        <div class="mt-4">
+            <p class="text-gray-600 text-sm">Total:</p>
+            <p id="cartTotal" class="text-2xl text-blue-600 font-bold"></p>
+
+            <button onclick="openOrderModal()"
+                class="mt-4 w-full bg-blue-600 text-white rounded-lg py-3 font-semibold">
+                Pesan
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL PESANAN -->
+    <div id="orderModal"
+        class="fixed inset-0 bg-black/40 hidden z-50 flex items-center justify-center">
+
+        <div class="bg-white w-80 p-6 rounded-2xl shadow-xl fade-in relative">
+
+            <button onclick="closeOrderModal()"
+                class="absolute top-3 right-3 text-xl text-gray-600">✕</button>
+
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Detail Pesanan</h2>
+
+            <p class="text-gray-700 text-sm">Total:</p>
+            <p id="orderTotal" class="text-blue-600 font-bold text-2xl"></p>
+
+            <label class="mt-4 block text-sm font-medium">Metode</label>
+            <select id="orderMethod" class="w-full border mt-1 p-2 rounded-lg">
+                <option value="ambil">Ambil di Toko</option>
+                <option value="antar">Antar</option>
+            </select>
+
+            <label class="mt-4 block text-sm font-medium">Catatan</label>
+            <textarea id="orderNote" rows="3"
+                class="w-full border p-2 rounded-lg text-sm"
+                placeholder="Catatan tambahan..."></textarea>
+
+            <button onclick="submitOrder()"
+                class="mt-5 w-full bg-blue-600 text-white py-2 rounded-lg font-semibold">
+                Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL SUKSES -->
+    <div id="successModal"
+        class="fixed inset-0 bg-black/40 hidden z-50 flex items-center justify-center">
+
+        <div class="bg-white w-72 p-6 rounded-xl text-center fade-in">
+            <h2 class="text-4xl text-green-600 font-bold">✓</h2>
+            <p class="font-semibold text-gray-900 mt-2">Pesanan berhasil!</p>
+            <p class="text-sm text-gray-600 mt-1">Tunggu konfirmasi dari penjual.</p>
+
+            <button onclick="closeSuccessModal()"
+                class="mt-5 w-full bg-blue-600 text-white py-2 rounded-lg">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+
+    <!-- SCRIPT -->
+    <script>
+        const cart = [];
+
+        // Fade in
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("show"); });
+        });
+        document.querySelectorAll(".fade-in").forEach(el => obs.observe(el));
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            renderCart();
+            toggleCart(true);
+        }
+
+        function renderCart() {
+            let list = document.getElementById('cartItems');
+            list.innerHTML = "";
+            let total = 0;
+
+            cart.forEach((item, i) => {
+                total += item.price;
+                list.innerHTML += `
+                    <div class='flex justify-between bg-gray-100 p-3 rounded-lg'>
+                        <div>
+                            <p class='font-semibold'>${item.name}</p>
+                            <p class='text-blue-600 font-bold'>Rp${item.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <button class='text-red-500 text-sm' onclick='removeItem(${i})'>Hapus</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById("cartTotal").textContent = "Rp" + total.toLocaleString("id-ID");
+        }
+
+        function removeItem(i) {
+            cart.splice(i, 1);
+            renderCart();
+        }
+
+        function toggleCart(show) {
+            const sheet = document.getElementById("cartSheet");
+            const overlay = document.getElementById("cartOverlay");
+
+            if (show) {
+                sheet.style.transform = "translateY(0%)";
+                overlay.style.display = "block";
+                overlay.onclick = () => toggleCart(false);
+            } else {
+                sheet.style.transform = "translateY(100%)";
+                overlay.style.display = "none";
+            }
+        }
+
+        function openOrderModal() {
+            if (cart.length === 0) return alert("Keranjang kosong!");
+            const total = cart.reduce((a, b) => a + b.price, 0);
+            document.getElementById("orderTotal").textContent = "Rp" + total.toLocaleString("id-ID");
+            document.getElementById("orderModal").classList.remove("hidden");
+        }
+
+        function closeOrderModal() {
+            document.getElementById("orderModal").classList.add("hidden");
+        }
+
+        function submitOrder() {
+            closeOrderModal();
+            toggleCart(false);
+            document.getElementById("successModal").classList.remove("hidden");
+        }
+
+        function closeSuccessModal() {
+            document.getElementById("successModal").classList.add("hidden");
+        }
+    </script>
+
+</body>
+
+</html>

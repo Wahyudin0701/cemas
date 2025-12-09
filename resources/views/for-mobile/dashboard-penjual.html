@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Penjual - CeMas (Mobile)</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.45s ease-out;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+    <!-- NAVBAR MOBILE -->
+    <nav class="fixed top-0 left-0 w-full h-14 bg-white shadow flex items-center justify-between px-4 z-30">
+        <div class="flex items-center space-x-2">
+            <a href="/" class="flex items-center text-gray-700 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-0.5" fill="none" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Home
+            </a>
+        </div>
+
+        <span class="text-lg font-bold text-blue-600">CeMas</span>
+
+        <button class="focus:outline-none">
+            <img src="https://ui-avatars.com/api/?name=Penjual" class="w-8 h-8 rounded-full border shadow-sm">
+        </button>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-16 px-4 pb-10 space-y-8">
+
+        <!-- Heading -->
+        <section class="fade-in">
+            <h2 class="text-2xl font-extrabold text-gray-900">Dashboard Penjual</h2>
+            <p class="text-gray-600 text-sm mt-1">
+                Ringkasan singkat aktivitas tokomu hari ini.
+            </p>
+        </section>
+
+        <!-- STAT CARDS (stacked mobile) -->
+       <section class="fade-in">
+
+    <div class="flex items-stretch gap-3">
+
+        <!-- TOTAL PRODUK (kiri) -->
+        <div class="flex-1 bg-white shadow-sm p-4 rounded-xl border flex items-center">
+            <div>
+                <p class="text-xs font-semibold text-blue-600 uppercase tracking-wide">Total Produk</p>
+                <h3 class="text-3xl font-bold text-gray-900 mt-1">4</h3>
+            </div>
+        </div>
+
+        <!-- BARANG + JASA (kanan dalam ROW) -->
+        <div class="flex flex-col justify-between gap-3">
+
+            <!-- BARANG -->
+            <div class="bg-white shadow-sm p-3 rounded-xl border w-32">
+                <p class="text-[10px] font-semibold text-red-600 uppercase tracking-wide">Barang</p>
+                <h3 class="text-2xl font-bold text-gray-900 mt-1">4</h3>
+            </div>
+
+            <!-- JASA -->
+            <div class="bg-white shadow-sm p-3 rounded-xl border w-32">
+                <p class="text-[10px] font-semibold text-green-600 uppercase tracking-wide">Jasa</p>
+                <h3 class="text-2xl font-bold text-gray-900 mt-1">0</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- AKSI CEPAT -->
+        <section class="fade-in">
+            <h3 class="text-lg font-bold text-gray-800 mb-3">Aksi Cepat</h3>
+
+            <div class="space-y-3">
+                <a href="{{ route('penjual.tambah-produk') }}"
+                    class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold text-center py-3 rounded-xl shadow">
+                    + Tambah Produk
+                </a>
+
+                <a href="{{ route('penjual.pesanan') }}"
+                    class="block w-full bg-white border text-gray-800 text-sm font-semibold text-center py-3 rounded-xl shadow hover:bg-gray-50">
+                    Lihat Pesanan
+                </a>
+
+                <a href="{{ route('penjual.toko') }}"
+                    class="block w-full bg-white border text-gray-800 text-sm font-semibold text-center py-3 rounded-xl shadow hover:bg-gray-50">
+                    Edit Profil Toko
+                </a>
+            </div>
+        </section>
+
+        <!-- PRODUK ANDA (LIST MOBILE) -->
+        <section class="fade-in">
+            <h3 class="text-lg font-bold text-gray-800 mb-3">Produk Anda</h3>
+
+            <div class="space-y-4">
+
+                <!-- CARD PRODUK 1 -->
+                <div class="bg-white rounded-xl shadow border overflow-hidden flex">
+                    <img src="https://placehold.co/400x400/0ea5e9/ffffff?text=Beras" class="w-28 h-28 object-cover">
+                    <div class="flex-1 p-3 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm">Beras Premium 5kg</h4>
+                            <p class="text-blue-600 font-bold mt-1 text-base">Rp65.000</p>
+                        </div>
+                        <a href="{{ route('penjual.detail-produk') }}"
+                            class="mt-2 text-xs w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg">
+                            Detail Produk
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD PRODUK 2 -->
+                <div class="bg-white rounded-xl shadow border overflow-hidden flex">
+                    <img src="https://placehold.co/400x400/0ea5e9/ffffff?text=Minyak" class="w-28 h-28 object-cover">
+                    <div class="flex-1 p-3 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm">Minyak Goreng 2L</h4>
+                            <p class="text-blue-600 font-bold mt-1 text-base">Rp32.000</p>
+                        </div>
+                        <button
+                            class="mt-2 text-xs w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg">
+                            Detail Produk
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD PRODUK 3 -->
+                <div class="bg-white rounded-xl shadow border overflow-hidden flex">
+                    <img src="https://placehold.co/400x400/0ea5e9/ffffff?text=Gula" class="w-28 h-28 object-cover">
+                    <div class="flex-1 p-3 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm">Gula Pasir 1kg</h4>
+                            <p class="text-blue-600 font-bold mt-1 text-base">Rp16.500</p>
+                        </div>
+                        <button
+                            class="mt-2 text-xs w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg">
+                            Detail Produk
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARD PRODUK 4 -->
+                <div class="bg-white rounded-xl shadow border overflow-hidden flex">
+                    <img src="https://placehold.co/400x400/0ea5e9/ffffff?text=Mie" class="w-28 h-28 object-cover">
+                    <div class="flex-1 p-3 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm">Mie Instan Dus</h4>
+                            <p class="text-blue-600 font-bold mt-1 text-base">Rp105.000</p>
+                        </div>
+                        <button
+                            class="mt-2 text-xs w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg">
+                            Detail Produk
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Fade-in sederhana
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                setTimeout(() => el.classList.add('show'), 100);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

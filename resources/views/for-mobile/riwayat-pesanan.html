@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pesanan - CeMas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s ease;
+        }
+
+        .accordion-open {
+            max-height: 500px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+    <!-- NAV MOBILE -->
+    <nav class="fixed top-0 left-0 w-full h-14 bg-white shadow flex items-center px-4 z-30">
+        <a href="/" class="flex items-center text-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" fill="none"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15 19l-7-7 7-7" />
+            </svg>
+            Kembali
+        </a>
+        <span class="mx-auto text-xl font-bold text-blue-600">CeMas</span>
+    </nav>
+
+    <!-- CONTENT MOBILE -->
+    <div class="pt-16 px-4 pb-10">
+
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Riwayat Pesanan</h1>
+        <p class="text-gray-600 text-sm mb-6">Klik tombol detail untuk melihat rincian pesanan.</p>
+
+        <!-- ======================= -->
+        <!-- ITEM PESANAN -->
+        <!-- ======================= -->
+        <div class="bg-white rounded-xl shadow p-4 border mb-4">
+
+            <!-- HEADER ROW -->
+            <div class="flex justify-between items-start">
+
+                <!-- INFORMASI PESANAN -->
+                <div class="w-3/4">
+                    <h3 class="text-base font-semibold text-gray-900">Toko Sembako Bu Siti</h3>
+
+                    <p class="text-gray-600 text-xs mt-1">
+                        Beras Premium 5kg × 2 — Rp130.000
+                    </p>
+
+                    <p class="text-[11px] text-gray-400 mt-1">
+                        12 Desember 2025 • 09:42
+                    </p>
+                </div>
+
+                <!-- STATUS + DETAIL BUTTON -->
+                <div class="flex flex-col items-end">
+
+                    <span class="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-yellow-50 text-yellow-700 border border-yellow-200">
+                        Menunggu
+                    </span>
+
+                    <button onclick="toggleAccordion('order1')"
+                        class="mt-2 px-3 py-1 text-xs rounded-lg border text-gray-700 hover:bg-gray-100">
+                        Detail
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- ACCORDION DETAIL -->
+            <div id="order1" class="accordion-content border-t mt-3 pt-3">
+
+                <h4 class="font-semibold text-gray-800 text-sm">Detail Pesanan</h4>
+
+                <div class="mt-3 text-sm text-gray-700 space-y-1">
+                    <p><span class="font-medium">Produk:</span> Beras Premium 5kg × 2</p>
+                    <p><span class="font-medium">Metode:</span> Ambil di Toko</p>
+                    <p><span class="font-medium">Catatan:</span> Bungkus rapi ya</p>
+
+                    <p class="mt-2">
+                        <span class="font-medium">Total:</span>
+                        <span class="font-bold text-blue-600">Rp130.000</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= -->
+        <!-- COPY ITEM UNTUK PESANAN LAIN -->
+        <!-- ======================= -->
+        <div class="bg-white rounded-xl shadow p-4 border mb-4">
+
+            <div class="flex justify-between items-start">
+
+                <div class="w-3/4">
+                    <h3 class="text-base font-semibold text-gray-900">Nasi Uduk Bang Jali</h3>
+                    <p class="text-gray-600 text-xs mt-1">
+                        Nasi Uduk × 3 — Rp45.000
+                    </p>
+                    <p class="text-[11px] text-gray-400 mt-1">10 Desember 2025 • 07:20</p>
+                </div>
+
+                <div class="flex flex-col items-end">
+                    <span class="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-green-50 text-green-700 border border-green-200">
+                        Selesai
+                    </span>
+
+                    <button onclick="toggleAccordion('order2')"
+                        class="mt-2 px-3 py-1 text-xs rounded-lg border text-gray-700 hover:bg-gray-100">
+                        Detail
+                    </button>
+                </div>
+
+            </div>
+
+            <div id="order2" class="accordion-content border-t mt-3 pt-3">
+                <h4 class="font-semibold text-gray-800 text-sm">Detail Pesanan</h4>
+
+                <div class="mt-3 text-sm text-gray-700 space-y-1">
+                    <p><span class="font-medium">Produk:</span> Nasi Uduk × 3</p>
+                    <p><span class="font-medium">Metode:</span> Antar</p>
+                    <p><span class="font-medium">Catatan:</span> Sambal banyak</p>
+                    <p class="mt-2">
+                        <span class="font-medium">Total:</span>
+                        <span class="font-bold text-blue-600">Rp45.000</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle("accordion-open");
+        }
+    </script>
+
+</body>
+
+</html>

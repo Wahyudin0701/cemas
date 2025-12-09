@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Produk - CeMas</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: all 0.5s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+
+            <h1 class="text-2xl font-bold text-blue-600">CeMas</h1>
+
+            <div class="flex items-center space-x-4">
+                <a href="/dashboard-penjual" class="text-gray-600 hover:text-gray-900 text-sm">Dashboard</a>
+
+                <img src="https://ui-avatars.com/api/?name=Penjual"
+                    class="w-9 h-9 rounded-full border shadow-sm">
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="max-w-6xl mx-auto px-6 py-10 fade-in">
+
+        <!-- Judul -->
+        <div class="mb-10">
+           <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Tambah Produk Baru</h2>
+        <p class="text-gray-600 mb-10">Lengkapi informasi berikut untuk menambah produk ke tokomu.</p>
+        </div>
+
+        <!-- CARD CONTAINER -->
+        <div class="bg-white rounded-2xl shadow-lg p-10 border pt-16">
+
+            <div class="grid md:grid-cols-2 gap-10">
+
+                <!-- ================== FOTO PRODUK ================== -->
+                <div>
+                <label class="block text-gray-800 font-semibold mb-2">Foto Produk</label>
+
+                <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:bg-gray-50">
+                    <input type="file" class="hidden" id="foto_produk">
+                    <label for="foto_produk" class="cursor-pointer text-blue-600 font-medium">
+                        Upload Foto
+                    </label>
+                    <p class="text-gray-500 text-sm mt-2">Format: JPG, PNG • Max 2MB</p>
+                </div>
+            </div>
+
+                <!-- ================== FORM ================== -->
+                <div class="space-y-6">
+
+                    <!-- NAMA PRODUK -->
+                    <div class="relative">
+                        <input type="text" id="nama_produk"
+                            value="Beras Premium 5kg"
+                            class="peer block w-full border border-gray-300 rounded-xl bg-white px-4 py-3
+           focus:border-blue-500 focus:ring-blue-500 shadow-sm">
+
+                        <label for="nama_produk"
+                            class="absolute left-4 top-3 text-gray-500 transition-all duration-150
+           peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white 
+           peer-focus:px-1 peer-focus:text-blue-600
+           peer-[:not(:placeholder-shown)]:text-xs 
+           peer-[:not(:placeholder-shown)]:-top-2
+           peer-[:not(:placeholder-shown)]:bg-white">
+                            Nama Produk
+                        </label>
+                    </div>
+
+                    <!-- HARGA -->
+                    <div class="relative">
+                        <input type="number" id="harga" value="65000"
+                            class="peer block w-full border border-gray-300 rounded-xl bg-white px-4 py-3
+                    focus:border-blue-500 focus:ring-blue-500 shadow-sm">
+
+                        <label for="harga" class="absolute left-4 top-3 text-gray-500 transition-all duration-150
+               peer-focus:text-xs peer-focus:-top-2 peer-focus:bg-white 
+               peer-focus:px-1 peer-focus:text-blue-600
+               peer-[:not(:placeholder-shown)]:text-xs 
+               peer-[:not(:placeholder-shown)]:-top-2
+               peer-[:not(:placeholder-shown)]:bg-white">
+                            Harga
+                        </label>
+                    </div>
+
+                    <!-- KATEGORI -->
+                    <div class="relative">
+                        <select id="kategori"
+                            class="peer block w-full border border-gray-300 rounded-xl bg-white px-4 py-3
+               focus:border-blue-500 focus:ring-blue-500 shadow-sm appearance-none">
+                            <option value="barang" selected>Barang</option>
+                            <option value="jasa">Jasa</option>
+                        </select>
+
+                        <label for="kategori"
+                            class="absolute left-4 top-3 text-gray-500 transition-all duration-150
+                   pointer-events-none bg-white px-1
+                   peer-focus:text-xs peer-focus:-top-2 peer-focus:text-blue-600">
+                            Kategori
+                        </label>
+
+                          <span class="absolute right-4 top-4 text-gray-400 pointer-events-none text-xs">
+                    ▼
+                </span>
+                    </div>
+
+                    <!-- DESKRIPSI -->
+                    <div class="relative">
+                        <textarea id="deskripsi" rows="4"
+                            class="peer block w-full border border-gray-300 rounded-xl bg-white px-4 py-3
+                   focus:border-blue-500 focus:ring-blue-500 shadow-sm resize-none">Beras premium kualitas terbaik.</textarea>
+
+                        <label for="deskripsi"
+                            class="absolute left-4 top-3 text-gray-500 transition-all duration-150 bg-white px-1
+                   peer-focus:text-xs peer-focus:-top-2 peer-focus:text-blue-600
+                   peer-[:not(:placeholder-shown)]:text-xs 
+                   peer-[:not(:placeholder-shown)]:-top-2">
+                            Deskripsi
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="mt-10 flex justify-end space-x-4">
+
+                <a href="/produk/detail"
+                    class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg">
+                    Batal
+                </a>
+
+                <button
+                    class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow">
+                    Simpan Perubahan
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.querySelector('.fade-in').classList.add('show');
+        }, 150);
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                document.getElementById('productPreview').src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+</body>
+
+</html>
