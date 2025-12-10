@@ -50,7 +50,6 @@
                 class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-white via-blue-50/70 to-transparent"></div>
         </header>
-
         <!-- KONTEN -->
         <section class="max-w-7xl mx-auto px-6 pb-16 -mt-40 relative z-15 fade-in">
             <!-- JUDUL TOKO -->
@@ -97,7 +96,7 @@
                             <p class="text-sm text-gray-600 mt-1">Stok: <span class="font-semibold">{{ $produk->stok }}</span></p>
 
                             <button type="button"
-                                onclick="addToCart({{ $produk->id }})"
+                                onclick="addToCart('{{ $produk->id }}')"
                                 class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 rounded-lg flex items-center justify-center gap-2 transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                                 {{ $produk->stok < 1 ? 'disabled' : '' }}>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

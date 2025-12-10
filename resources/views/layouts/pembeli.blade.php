@@ -36,6 +36,13 @@
                 </a>
             </div>
 
+            <!-- Menu Tengah -->
+            <div class="hidden md:flex space-x-6">
+                <a href="/" class="text-sm font-medium hover:text-blue-600">Homepage</a>
+                <a href="#daftar-toko" class="text-sm font-medium text-gray-600 hover:text-blue-600">Daftar Toko</a>
+                <a href="#tentang" class="text-sm font-medium text-gray-600 hover:text-blue-600">Tentang Kami</a>
+            </div>
+
             <div class="flex items-center">
                 <!-- User Dropdown -->
                 <div class="relative hidden md:flex">

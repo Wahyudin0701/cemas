@@ -134,8 +134,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 @endauth
 
             </div>
@@ -143,18 +141,18 @@
     </nav>
 
     <section
-        class="pt-32 pb-24 min-h-screen flex items-center fade-in bg-gradient-to-br from-gray-50 via-blue-50 to-blue-300">
+        class="pt-24 pb-24 min-h-screen flex items-center fade-in bg-gradient-to-br from-gray-50 via-blue-50 to-blue-300">
         <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
             <div>
                 <h1 class="text-5xl font-extrabold text-gray-900 leading-tight">
-                    Platform UMKM Warga Aston Villa
+                    Platform UMKM Digital Berbasis Komunitas
                 </h1>
                 <h2 class="text-2xl mt-3 font-semi">
-                    Community E-Marketplace
+                    Community E-Marketplace Aston Villa
                 </h2>
 
                 <p class="mt-6 text-lg text-gray-600 max-w-md leading-relaxed">
-                    Belanja kebutuhan harian, makanan, dan jasa dari tetangga Anda sendiri.
+                    Belanja kebutuhan harian, makanan, dan lain lain dari tetangga Anda sendiri.
                     CeMas mendukung pemberdayaan warga melalui digitalisasi UMKM lingkungan.
                 </p>
 
@@ -172,7 +170,7 @@
     </section>
 
     <!-- DAFTAR TOKO -->
-    <section id="daftar-toko" class="py-28 bg-gradient-to-tr from-gray-50 via-blue-50 to-blue-300">
+    <section id="daftar-toko" class="min-h-screen pt-24 bg-gradient-to-tr from-gray-50 via-blue-50 to-blue-300">
         <div class="max-w-7xl mx-auto px-4">
 
             <div class="text-center mb-16">

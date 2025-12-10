@@ -3,7 +3,12 @@
 @section('title', 'Dashboard Penjual - CeMas')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-6 py-10 space-y-10">
+    <header class="relative w-full h-56 overflow-hidden">
+        <img src="{{ $toko->foto_toko ? asset($toko->foto_toko) : 'https://placehold.co/800x400?text=Toko' }}"
+            class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-blue-50/70 to-transparent"></div>
+    </header>
+    <div class="max-w-7xl mx-auto px-6 py-10 space-y-10 -mt-52 relative z-15 fade-in">
 
         <!-- Heading -->
         <div>
