@@ -163,7 +163,7 @@
                 </a>
             </div>
             <div class="hidden md:block">
-                <img src="{{ asset('Images/lorong_asvil.jpg') }}"
+                <img src="{{ asset('Image/lorong_asvil.jpg') }}"
                     class="rounded-xl shadow-lg hover:scale-[1.02] duration-500" alt="Lorong Aston Villa">
             </div>
         </div>
