@@ -33,21 +33,10 @@ class ProdukController extends Controller
         $validated = $request->validate([
             'nama_produk'   => ['required', 'string', 'max:255'],
             'harga'         => ['required', 'numeric', 'min:0'],
-            'jenis'         => ['required', 'in:Barang,Jasa'],
+            'stok'          => ['required', 'integer', 'min:0'],
             'deskripsi'     => ['required', 'string'],
             'foto_produk'   => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
-
-        // Jika jenis adalah Barang → stok wajib
-        if ($request->jenis === 'Barang') {
-            $request->validate([
-                'stok' => ['required', 'integer', 'min:0'],
-            ]);
-            $stok = $request->stok;
-        } else {
-            // Jika Jasa → stok diabaikan
-            $stok = 0;
-        }
 
         // Upload foto
         $pathFoto = null;
@@ -62,8 +51,7 @@ class ProdukController extends Controller
             'nama_produk'  => $validated['nama_produk'],
             'deskripsi'    => $validated['deskripsi'],
             'harga'        => $validated['harga'],
-            'jenis'        => $validated['jenis'],
-            'stok'         => $stok,  // stok sudah ditentukan di atas
+            'stok'         => $validated['stok'],
             'foto_produk'  => $pathFoto,
         ]);
 
@@ -91,21 +79,10 @@ class ProdukController extends Controller
         $validated = $request->validate([
             'nama_produk' => 'required|string|max:255',
             'harga' => 'required|numeric|min:0',
-            'jenis' => 'required|in:Barang,Jasa',
+            'stok' => 'required|integer|min:0',
             'deskripsi' => 'nullable|string',
             'foto_produk' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
         ]);
-
-        // Jika jenis Barang → stok wajib  
-        if ($request->jenis === 'Barang') {
-            $request->validate([
-                'stok' => ['required', 'integer', 'min:0'],
-            ]);
-            $validated['stok'] = $request->stok;
-        } else {
-            // Jika Jasa → set stok 0
-            $validated['stok'] = 0;
-        }
 
         // Update foto jika ada
         if ($request->hasFile('foto_produk')) {

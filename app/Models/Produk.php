@@ -10,7 +10,6 @@ class Produk extends Model
         'toko_id',
         'nama_produk',
         'deskripsi',
-        'jenis',
         'harga',
         'stok',
         'foto_produk'

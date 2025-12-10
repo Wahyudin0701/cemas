@@ -18,10 +18,8 @@ return new class extends Migration
             $table->string('nama_produk');
             $table->text('deskripsi')->nullable();
             $table->decimal('harga', 10, 2);
-            $table->enum('jenis', ['Barang', 'Jasa'])->default('Barang');
-            // Stok bisa bernilai 0 atau NULL (untuk Jasa)
+            $table->integer('stok')->default(0);
             $table->string('foto_produk')->nullable();
-
             $table->timestamps();
         });
     }

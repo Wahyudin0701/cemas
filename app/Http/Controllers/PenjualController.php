@@ -20,10 +20,8 @@ class PenjualController extends Controller
 
         // Hitung statistik
         $totalProduk = $produkList->count();
-        $totalBarang = $produkList->where('jenis', 'Barang')->count();
-        $totalJasa = $produkList->where('jenis', 'Jasa')->count();
 
-        return view('penjual.dashboard', compact('toko', 'produkList', 'totalProduk', 'totalBarang', 'totalJasa'));
+        return view('penjual.dashboard', compact('toko', 'produkList', 'totalProduk'));
     }
 
     public function cekStatus()

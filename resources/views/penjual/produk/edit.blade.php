@@ -108,38 +108,11 @@
                     </div>
 
 
-                    <!-- JENIS -->
-                    <div class="relative">
 
-                        <select name="jenis" id="jenis" required
-                            class="peer block w-full border border-gray-300 rounded-xl bg-white px-4 py-3
-                           focus:border-blue-500 focus:ring-blue-500 shadow-sm appearance-none">
-
-                            <option value="" disabled hidden></option>
-
-                            <option value="Barang" {{ $produk->jenis === 'Barang' ? 'selected' : '' }}>Barang</option>
-                            <option value="Jasa" {{ $produk->jenis === 'Jasa' ? 'selected' : '' }}>Jasa</option>
-                        </select>
-
-                        <label for="jenis"
-                            class="absolute left-4 top-3 text-gray-500 transition-all duration-150 bg-white px-1
-                                    pointer-events-none
-                                    peer-focus:text-xs peer-focus:-top-2 peer-focus:text-blue-600
-                                    peer-valid:text-xs peer-valid:-top-2 peer-valid:text-blue-600">
-                            Jenis Produk
-                        </label>
-
-                        <span class="absolute right-4 top-4 text-gray-400 pointer-events-none text-xs">▼</span>
-
-                        @error('jenis')
-                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-
-                    </div>
 
                     <!-- STOK -->
                     <div class="relative" id="stokContainer">
-                        <input type="number" name="stok" id="stok" min="0"
+                        <input type="number" required name="stok" id="stok" min="0"
                             value="{{ old('stok', $produk->stok) }}"
                             class="peer block w-full border border-gray-300 rounded-xl bg-white px-4 py-3
                            focus:border-blue-500 focus:ring-blue-500 shadow-sm"
@@ -217,25 +190,5 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     }
-
-    // Toggle Stok Visibility
-    const jenisSelect = document.getElementById('jenis');
-    const stokContainer = document.getElementById('stokContainer');
-    const stokInput = document.getElementById('stok');
-
-    function toggleStok() {
-        if (jenisSelect.value === 'Barang') {
-            stokContainer.classList.remove('hidden');
-        } else {
-            stokContainer.classList.add('hidden');
-            // Optional: clear value if hidden, but be careful on edit page not to lose data if accidental toggle
-            // stokInput.value = ''; 
-        }
-    }
-
-    jenisSelect.addEventListener('change', toggleStok);
-    
-    // Run on load
-    toggleStok();
 </script>
 @endpush

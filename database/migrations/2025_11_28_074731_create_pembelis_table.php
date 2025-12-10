@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->unique()->constrained('users')->onDelete('cascade');
             $table->string('phone')->nullable();
             $table->text('alamat')->nullable();
-            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

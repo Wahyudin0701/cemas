@@ -40,7 +40,7 @@ class AdminController extends Controller
     {
         $user = User::with(['penjual.toko', 'pembeli'])->findOrFail($id);
         $penjual = $user->penjual;
-
+        
         return view('admin.detail-pengguna', compact('user', 'penjual'));
     }
 

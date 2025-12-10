@@ -13,7 +13,7 @@ Route::middleware(['auth', 'role:pembeli'])->group(function () {
 
     Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
     Route::post('/keranjang/tambah', [KeranjangController::class, 'addToCart'])->name('keranjang.tambah');
-    Route::patch('/keranjang/update', [KeranjangController::class, 'updateQuantity'])->name('keranjang.update');
+    Route::post('/keranjang/update-qty', [KeranjangController::class, 'updateQty'])->name('keranjang.updateQty');
     Route::get('/keranjang/items', [KeranjangController::class, 'getCartItems'])->name('keranjang.items');
     Route::delete('/keranjang/hapus/{produkId}', [KeranjangController::class, 'removeItem'])->name('keranjang.hapus');
     Route::post('/checkout', [\App\Http\Controllers\CheckoutController::class, 'process'])->name('checkout.process');

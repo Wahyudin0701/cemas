@@ -11,7 +11,8 @@ class Penjual extends Model
         'nik',
         'foto_ktp',
         'phone',
-        'alamat'
+        'alamat',
+        'is_active'
     ];
 
     /**

@@ -90,24 +90,20 @@
                         <div class="p-4">
                             <h3 class="font-semibold text-gray-900 text-sm h-10 line-clamp-2">{{ $produk->nama_produk }}</h3>
 
-                            <span class="inline-block mt-1 text-xs rounded-full px-2 py-1 {{ $produk->jenis === 'Jasa' ? 'bg-purple-100 text-purple-700' : 'bg-green-100 text-green-700' }}">
-                                {{ $produk->jenis }}
-                            </span>
+
 
                             <p class="text-blue-600 font-bold mt-2 text-lg">Rp{{ number_format($produk->harga, 0, ',', '.') }}</p>
 
-                            @if($produk->jenis === 'Barang')
                             <p class="text-sm text-gray-600 mt-1">Stok: <span class="font-semibold">{{ $produk->stok }}</span></p>
-                            @endif
 
                             <button type="button"
                                 onclick="addToCart({{ $produk->id }})"
                                 class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 rounded-lg flex items-center justify-center gap-2 transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                                {{ ($produk->jenis === 'Barang' && $produk->stok < 1) ? 'disabled' : '' }}>
+                                {{ $produk->stok < 1 ? 'disabled' : '' }}>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                                 </svg>
-                                {{ ($produk->jenis === 'Barang' && $produk->stok < 1) ? 'Habis' : '+ Keranjang' }}
+                                {{ $produk->stok < 1 ? 'Habis' : '+ Keranjang' }}
                             </button>
                         </div>
                     </div>

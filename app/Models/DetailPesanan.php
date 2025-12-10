@@ -12,7 +12,6 @@ class DetailPesanan extends Model
         'produk_id',
         'kuantitas', // Renamed from jumlah_produk to match migration
         'harga_saat_pesan', // Renamed from harga_satuan to match migration
-        // 'subtotal' // Removed as it doesn't exist in migration
     ];
 
     public function pesanan()

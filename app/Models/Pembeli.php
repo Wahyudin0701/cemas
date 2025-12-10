@@ -9,7 +9,7 @@ class Pembeli extends Model
     protected $fillable = [
         'user_id',
         'phone',
-        'alamat'
+        'alamat',
     ];
 
     /**

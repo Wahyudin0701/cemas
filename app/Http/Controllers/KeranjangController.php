@@ -71,6 +71,14 @@ class KeranjangController extends Controller
 
         $qtyTambah = $request->quantity ?? 1;
 
+        $currentQty = $detail ? $detail->jumlah_produk : 0;
+        
+        if (($currentQty + $qtyTambah) > $produk->stok) {
+            return response()->json([
+                'message' => 'Stok tidak mencukupi. Sisa stok: ' . $produk->stok
+            ], 400);
+        }
+
         if ($detail) {
             $detail->jumlah_produk += $qtyTambah;
             $detail->save();
@@ -156,33 +164,63 @@ class KeranjangController extends Controller
         ]);
     }
     
-    public function updateQuantity(Request $request)
+    public function updateQty(Request $request)
     {
         $request->validate([
             'detail_id' => 'required|exists:detail_keranjangs,id',
-            'quantity'  => 'required|integer|min:1'
+            'change' => 'required|integer|in:1,-1'
         ]);
 
-        $detail = DetailKeranjang::findOrFail($request->detail_id);
+        $detail = DetailKeranjang::with(['produk', 'keranjang'])->findOrFail($request->detail_id);
         
         // Ensure user owns this cart item
         if ($detail->keranjang->pembeli_id !== Auth::user()->pembeli->id) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
-        // Check stock
-        if ($request->quantity > $detail->produk->stok) {
+        $newQty = $detail->jumlah_produk + $request->change;
+
+        // Jika qty 0, hapus item
+        if ($newQty <= 0) {
+            $detail->delete();
+            
+            // Hitung ulang total toko
+            $shopTotal = $this->calculateShopTotal($detail->keranjang_id);
+            
             return response()->json([
-                'error' => 'Stok tidak mencukupi. Sisa stok: ' . $detail->produk->stok
+                'status' => 'deleted',
+                'shop_total' => $shopTotal,
+                'shop_total_formatted' => number_format($shopTotal, 0, ',', '.')
+            ]);
+        }
+
+        // Cek stok
+        if ($newQty > $detail->produk->stok) {
+            return response()->json([
+                'error' => 'Stok tidak mencukupi (Max: ' . $detail->produk->stok . ')'
             ], 400);
         }
 
-        $detail->jumlah_produk = $request->quantity;
+        $detail->jumlah_produk = $newQty;
         $detail->save();
+        
+        $shopTotal = $this->calculateShopTotal($detail->keranjang_id);
 
         return response()->json([
-            'success' => true,
-            'new_subtotal' => $detail->jumlah_produk * $detail->produk->harga
+            'status' => 'updated',
+            'new_qty' => $newQty,
+            'shop_total' => $shopTotal,
+            'shop_total_formatted' => number_format($shopTotal, 0, ',', '.')
         ]);
+    }
+
+    private function calculateShopTotal($keranjangId)
+    {
+        $items = DetailKeranjang::where('keranjang_id', $keranjangId)->with('produk')->get();
+        $total = 0;
+        foreach($items as $item) {
+            $total += $item->jumlah_produk * $item->produk->harga;
+        }
+        return $total;
     }
 }

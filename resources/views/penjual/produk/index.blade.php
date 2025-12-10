@@ -30,25 +30,16 @@
                 <p class="text-blue-600 font-bold text-3xl mt-2">
                     Rp {{ number_format($produk->harga, 0, ',', '.') }}
                 </p>
-            </div>
+            </div>  
 
             <div class="text-gray-700 space-y-2 text-sm">
 
-                <p>
-                    <span class="font-semibold">Jenis Produk : </span>
-                    <span
-                        class="px-2 py-1 rounded-full text-xs 
-                        {{ $produk->jenis === 'Jasa' ? 'bg-purple-100 text-purple-700' : 'bg-green-100 text-green-700' }}">
-                        {{ $produk->jenis }}
-                    </span>
-                </p>
 
-                @if($produk->jenis === 'Barang')
+
                 <p>
                     <span class="font-semibold">Stok:</span>
                     {{ $produk->stok }}
                 </p>
-                @endif
 
                 <p><span class="font-semibold">Deskripsi:</span></p>
                 <p class="bg-gray-100 p-3 rounded-lg text-gray-600 leading-relaxed">

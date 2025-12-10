@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->text('alamat')->nullable();
             $table->string('foto_ktp')->nullable();
-            $table->boolean('is_active')->default(true);
 
             $table->timestamps();
         });
