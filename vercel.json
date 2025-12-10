@@ -3,17 +3,15 @@
     "framework": null,
     "builds": [
         {
-            "src": "api/index.php",
+            "src": "/api/index.php",
             "use": "vercel-php@0.7.2"
-        }
-    ],
-    "routes": [
+        },
         {
             "src": "/public/**",
             "use": "@vercel/static"
         }
     ],
-    "routes":[
+    "routes": [
         {
             "src": "/(build|css|js|images|storage|svg)/(.*)",
             "dest": "/public/$1/$2"
@@ -31,6 +29,14 @@
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://cemas.vercel.app",
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp",
+        "CACHE_DRIVER": "array",
+        "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
     }
 }
