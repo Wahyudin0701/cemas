@@ -13,7 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <style>
         .login-bg {
-            background-image: url('{{ asset("images/lorong_asvil.jpg") }}');
+            background-image: url('{{ asset("image/lorong_asvil.jpg") }}');
         }
     </style>
 
