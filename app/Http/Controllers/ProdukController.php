@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
@@ -41,9 +42,7 @@ class ProdukController extends Controller
         // Upload foto
         $pathFoto = null;
         if ($request->hasFile('foto_produk')) {
-            $filename = time() . '-' . uniqid() . '.' . $request->foto_produk->extension();
-            $request->foto_produk->move(public_path('Image/produk'), $filename);
-            $pathFoto = 'Image/produk/' . $filename;
+            $pathFoto = $request->file('foto_produk')->store('produk', 'cloudinary');
         }
 
         Produk::create([
@@ -85,14 +84,14 @@ class ProdukController extends Controller
         ]);
 
         // Update foto jika ada
+        // Update foto jika ada
         if ($request->hasFile('foto_produk')) {
-            if ($produk->foto_produk && file_exists(public_path($produk->foto_produk))) {
-                unlink(public_path($produk->foto_produk));
+            if ($produk->foto_produk) {
+               Storage::disk('cloudinary')->delete($produk->foto_produk);
             }
 
-            $filename = time() . '-' . uniqid() . '.' . $request->foto_produk->extension();
-            $request->foto_produk->move(public_path('Image/produk'), $filename);
-            $validated['foto_produk'] = 'Image/produk/' . $filename;
+            $path = $request->file('foto_produk')->store('produk', 'cloudinary');
+            $validated['foto_produk'] = $path;
         }
 
         $produk->update($validated);
@@ -109,8 +108,8 @@ class ProdukController extends Controller
 
         $produk = $toko->produks()->where('id', $id)->firstOrFail();
 
-        if ($produk->foto_produk && file_exists(public_path($produk->foto_produk))) {
-            unlink(public_path($produk->foto_produk));
+        if ($produk->foto_produk) {
+            Storage::disk('cloudinary')->delete($produk->foto_produk);
         }
 
         $produk->delete();

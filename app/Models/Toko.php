@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Toko extends Model
 {
@@ -41,5 +42,16 @@ class Toko extends Model
     {
         // Detail Pesanan yang menjadi tanggung jawab toko ini
         return $this->hasMany(DetailPesanan::class);
+    }
+    public function getFotoTokoUrlAttribute()
+    {
+        if (!$this->foto_toko) {
+            return null;
+        }
+        if(str_starts_with($this->foto_toko, 'http')) {
+            return $this->foto_toko;
+        }
+        $disk = Storage::disk('cloudinary');
+        return $disk->url($this->foto_toko);
     }
 }

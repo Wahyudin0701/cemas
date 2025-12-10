@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Penjual extends Model
 {
@@ -30,5 +31,17 @@ class Penjual extends Model
     {
         // Satu penjual hanya memiliki satu toko
         return $this->hasOne(Toko::class);
+    }
+
+    public function getFotoKtpUrlAttribute()
+    {
+        if (!$this->foto_ktp) {
+            return null;
+        }
+        if(str_starts_with($this->foto_ktp, 'http')) {
+            return $this->foto_ktp;
+        }
+        $disk = Storage::disk('cloudinary');
+        return $disk->url($this->foto_ktp);
     }
 }

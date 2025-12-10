@@ -79,10 +79,10 @@
                     <div
                         class="card bg-white p-6 rounded-xl shadow border border-gray-100 
                             transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-
-                        <img src="{{ $toko->foto_toko ? asset($toko->foto_toko) : 'https://placehold.co/400x400?text=Toko' }}"
+                        @if($toko->foto_toko_url)
+                        <img src="{{ $toko->foto_toko_url ?? 'https://placehold.co/400x400?text=Toko' }}"
                             class="w-full h-36 object-cover">
-
+                        @endif
                         <h3 class="text-xl font-bold text-gray-900">{{ $toko->nama_toko }}</h3>
 
                         <p class="text-gray-600 mt-2">

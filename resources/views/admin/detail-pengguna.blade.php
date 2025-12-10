@@ -95,57 +95,58 @@
 
                         </div>
                         @if ($user->role->value === 'penjual')
-                        <!-- Penjual -->
-                        <div class="my-6 border-t">
-                            <h3 class="text-lg font-bold text-gray-900 mb-4">Data Verifikasi Penjual</h3>
+                            <!-- Penjual -->
+                            <div class="my-6 border-t">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4">Data Verifikasi Penjual</h3>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                                <div>
-                                    <p class="font-semibold text-sm text-gray-700">NIK</p>
-                                    <p class="mt-1 text-gray-800">{{ $user->penjual->nik ?? '-' }}</p>
-                                </div>
-
-                                <div>
-                                    <p class="font-semibold text-sm text-gray-700 mb-2">Foto KTP</p>
-                                    @if ($user->role->value === 'penjual')
-                                        <img src="{{ route('penjual.ktp', $user->penjual->id) }}"
-                                            class="rounded-lg border shadow">
-                                    @else
-                                        <span class="text-gray-400 italic">Tidak ada foto KTP</span>
-                                    @endif
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="mt-6 border-t pt-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-4">Informasi Toko</h3>
-
-                            @if ($user->penjual->toko)
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                    <div class="text-sm space-y-3">
-                                        <p><span class="font-semibold">Nama Toko:</span>
-                                            {{ $user->penjual->toko->nama_toko }}</p>
-                                        <p><span class="font-semibold">Jam Buka:</span>
-                                            {{ $user->penjual->toko->jam_buka ?? '-' }}</p>
-                                        <p><span class="font-semibold">Jam Tutup:</span>
-                                            {{ $user->penjual->toko->jam_tutup ?? '-' }}</p>
-                                        <p><span class="font-semibold">Alamat:</span>
-                                            {{ $user->penjual->toko->lokasi ?? '-' }}</p>
-                                        <p><span class="font-semibold">Deskripsi:</span>
-                                            {{ $user->penjual->toko->deskripsi_toko ?? '-' }}</p>
+                                    <div>
+                                        <p class="font-semibold text-sm text-gray-700">NIK</p>
+                                        <p class="mt-1 text-gray-800">{{ $user->penjual->nik ?? '-' }}</p>
                                     </div>
 
                                     <div>
-                                        <p class="font-semibold text-sm text-gray-700 mb-2">Foto Toko</p>
-                                        <img src="{{ $user->penjual->toko->foto_toko ? asset($user->penjual->toko->foto_toko) : 'https://placehold.co/300x180?text=Toko' }}"
-                                            class="rounded-lg border shadow max-w-sm w-full">
+                                        <p class="font-semibold text-sm text-gray-700 mb-2">Foto KTP</p>
+                                        @if ($user->role->value === 'penjual')
+                                            <img src="{{ $user->penjual->foto_ktp_url }}" class="rounded-lg border shadow">
+                                        @else
+                                            <span class="text-gray-400 italic">Tidak ada foto KTP</span>
+                                        @endif
                                     </div>
+
                                 </div>
-                            @else
-                                <p class="text-gray-500 italic">User ini belum memiliki data toko.</p>
-                            @endif
-                        </div>
+                            </div>
+                            <div class="mt-6 border-t pt-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4">Informasi Toko</h3>
+
+                                @if ($user->penjual->toko)
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="text-sm space-y-3">
+                                            <p><span class="font-semibold">Nama Toko:</span>
+                                                {{ $user->penjual->toko->nama_toko }}</p>
+                                            <p><span class="font-semibold">Jam Buka:</span>
+                                                {{ $user->penjual->toko->jam_buka ?? '-' }}</p>
+                                            <p><span class="font-semibold">Jam Tutup:</span>
+                                                {{ $user->penjual->toko->jam_tutup ?? '-' }}</p>
+                                            <p><span class="font-semibold">Alamat:</span>
+                                                {{ $user->penjual->toko->lokasi ?? '-' }}</p>
+                                            <p><span class="font-semibold">Deskripsi:</span>
+                                                {{ $user->penjual->toko->deskripsi_toko ?? '-' }}</p>
+                                        </div>
+
+                                        <div>
+                                            <p class="font-semibold text-sm text-gray-700 mb-2">Foto Toko</p>
+                                            @if ($user->penjual->toko->foto_toko_url)
+                                                <img src="{{ $user->penjual->toko->foto_toko_url ?? 'https://placehold.co/300x180?text=Toko' }}"
+                                                    class="rounded-lg border shadow max-w-sm w-full">
+                                            @endif
+                                        </div>
+                                    </div>
+                                @else
+                                    <p class="text-gray-500 italic">User ini belum memiliki data toko.</p>
+                                @endif
+                            </div>
                         @endif
                     </div>
 
@@ -210,7 +211,7 @@
         <!-- POPUP KONFIRMASI (VERIFIKASI TOKO) -->
         @if ($user->role->value === 'penjual' && $user->penjual && $user->penjual->toko)
             <div x-show="showConfirm" x-transition.opacity.duration.300ms @click.self="showConfirm = false"
-                class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+                class="fixed  inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
                 style="display: none;">
 
                 <!-- POPUP CARD -->

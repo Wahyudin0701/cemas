@@ -108,18 +108,21 @@ class RegisteredUserController extends Controller
         // ================================
         // 1. UPLOAD FOTO KTP
         // ================================
-        $fotoKtpPath = $request->file('foto_ktp')->store('ktp', 'private');
+        $fotoKtpPath = null;
+        if ($request->hasFile('foto_ktp')) {
+            $path = $request->file('foto_ktp')->store('ktp', 'cloudinary');
+            $fotoKtpPath = $path;
+        }
 
 
         // ================================
         // 2. UPLOAD FOTO TOKO
         // ================================
-        $fotoToko = $request->file('foto_toko');
-        $fotoTokoName = time() . '_' . $fotoToko->getClientOriginalName();
-
-        $fotoToko->move(public_path('image/toko'), $fotoTokoName);
-
-        $fotoTokoPath = 'image/toko/' . $fotoTokoName;
+        $fotoToko = null;
+        if ($request->hasFile('foto_toko')) {
+            $path = $request->file('foto_toko')->store('toko', 'cloudinary');
+            $fotoTokoPath = $path;
+        }
 
 
         // ================================
@@ -158,7 +161,6 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-
         return redirect()->route('login')->with('success', 'Akun anda berhasil dibuat. Silakan login.');
     }
 }

@@ -13,7 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <style>
         .login-bg {
-            background-image: url('{{ asset("images/lorong_asvil.jpg") }}');
+            background-image: url('{{ asset('images/lorong_asvil.jpg') }}');
         }
     </style>
 
@@ -32,7 +32,8 @@
 
             <!-- Header -->
             <div class="flex flex-col items-center mb-6">
-                <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
+                <div
+                    class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
                     C
                 </div>
                 <h1 class="mt-2 text-xl font-bold">CeMas</h1>
@@ -47,7 +48,8 @@
                     <a href="{{ route('login') }}" class="text-blue-600 font-medium hover:underline">Login</a>
                 </p>
 
-                <form method="POST" action="{{ route('register.penjual') }}" class="space-y-6" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('register.penjual') }}" class="space-y-6"
+                    enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="role" value="penjual">
@@ -68,10 +70,7 @@
                                 <x-text-input id="name"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm 
                         {{ $errors->has('name') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="text"
-                                    name="name"
-                                    value="{{ old('name') }}"
-                                    required />
+                                    type="text" name="name" value="{{ old('name') }}" required />
                                 <x-input-error :messages="$errors->get('name')" class="mt-1 text-xs text-red-600" />
                             </div>
 
@@ -81,10 +80,7 @@
                                 <x-text-input id="email"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm 
                         {{ $errors->has('email') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="email"
-                                    name="email"
-                                    value="{{ old('email') }}"
-                                    required />
+                                    type="email" name="email" value="{{ old('email') }}" required />
                                 <x-input-error :messages="$errors->get('email')" class="mt-1 text-xs text-red-600" />
                             </div>
 
@@ -94,10 +90,7 @@
                                 <x-text-input id="nik"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('nik') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="text"
-                                    name="nik"
-                                    value="{{ old('nik') }}"
-                                    required />
+                                    type="text" name="nik" value="{{ old('nik') }}" required />
                                 <x-input-error :messages="$errors->get('nik')" class="mt-1 text-xs text-red-600" />
                             </div>
 
@@ -107,9 +100,7 @@
                                 <input type="file"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('foto_ktp') ? 'border-red-500 bg-red-50' : '' }}"
-                                    name="foto_ktp"
-                                    accept="image/*"
-                                    required>
+                                    name="foto_ktp" accept="image/*" required>
                                 <x-input-error :messages="$errors->get('foto_ktp')" class="mt-1 text-xs text-red-600" />
                             </div>
 
@@ -119,10 +110,7 @@
                                 <x-text-input id="phone"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('phone') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="text"
-                                    name="phone"
-                                    value="{{ old('phone') }}"
-                                    required />
+                                    type="text" name="phone" value="{{ old('phone') }}" required />
                                 <x-input-error :messages="$errors->get('phone')" class="mt-1 text-xs text-red-600" />
                             </div>
 
@@ -132,10 +120,7 @@
                                 <x-text-input id="alamat"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('alamat') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="text"
-                                    name="alamat"
-                                    value="{{ old('alamat') }}"
-                                    required />
+                                    type="text" name="alamat" value="{{ old('alamat') }}" required />
                                 <x-input-error :messages="$errors->get('alamat')" class="mt-1 text-xs text-red-600" />
                             </div>
 
@@ -145,9 +130,7 @@
                                 <x-text-input id="password"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('password') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="password"
-                                    name="password"
-                                    required />
+                                    type="password" name="password" required />
                                 <x-input-error :messages="$errors->get('password')" class="mt-1 text-xs text-red-600" />
                             </div>
 
@@ -157,9 +140,7 @@
                                 <x-text-input id="password_confirmation"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('password_confirmation') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="password"
-                                    name="password_confirmation"
-                                    required />
+                                    type="password" name="password_confirmation" required />
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1 text-xs text-red-600" />
                             </div>
 
@@ -178,19 +159,14 @@
                                 <x-text-input id="nama_toko"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('nama_toko') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="text"
-                                    name="nama_toko"
-                                    value="{{ old('nama_toko') }}"
-                                    required />
+                                    type="text" name="nama_toko" value="{{ old('nama_toko') }}" required />
                                 <x-input-error :messages="$errors->get('nama_toko')" class="mt-1 text-xs text-red-600" />
                             </div>
 
                             {{-- DESKRIPSI TOKO --}}
                             <div>
                                 <label class="text-sm font-medium">Deskripsi Toko *</label>
-                                <textarea
-                                    name="deskripsi_toko"
-                                    rows="3"
+                                <textarea name="deskripsi_toko" rows="3"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('deskripsi_toko') ? 'border-red-500 bg-red-50' : '' }}"
                                     required>{{ old('deskripsi_toko') }}</textarea>
@@ -203,18 +179,14 @@
                                 <input type="file"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('foto_toko') ? 'border-red-500 bg-red-50' : '' }}"
-                                    name="foto_toko"
-                                    accept="image/*"
-                                    required>
+                                    name="foto_toko" accept="image/*" required>
                                 <x-input-error :messages="$errors->get('foto_toko')" class="mt-1 text-xs text-red-600" />
                             </div>
 
                             {{-- JAM BUKA --}}
                             <div>
                                 <label class="text-sm font-medium">Jam Buka *</label>
-                                <input type="time"
-                                    name="jam_buka"
-                                    value="{{ old('jam_buka') }}"
+                                <input type="time" name="jam_buka" value="{{ old('jam_buka') }}"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm 
                         {{ $errors->has('jam_buka') ? 'border-red-500 bg-red-50' : '' }}"
                                     required>
@@ -224,9 +196,7 @@
                             {{-- JAM TUTUP --}}
                             <div>
                                 <label class="text-sm font-medium">Jam Tutup *</label>
-                                <input type="time"
-                                    name="jam_tutup"
-                                    value="{{ old('jam_tutup') }}"
+                                <input type="time" name="jam_tutup" value="{{ old('jam_tutup') }}"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm 
                         {{ $errors->has('jam_tutup') ? 'border-red-500 bg-red-50' : '' }}"
                                     required>
@@ -239,13 +209,10 @@
                                 <x-text-input id="lokasi"
                                     class="block w-full px-4 py-2 mt-1 rounded-xl bg-gray-50 border text-sm
                         {{ $errors->has('lokasi') ? 'border-red-500 bg-red-50' : '' }}"
-                                    type="text"
-                                    name="lokasi"
-                                    value="{{ old('lokasi') }}"
-                                    required />
+                                    type="text" name="lokasi" value="{{ old('lokasi') }}" required />
                                 <x-input-error :messages="$errors->get('lokasi')" class="mt-1 text-xs text-red-600" />
                             </div>
-                            
+
                             <!-- SUBMIT BUTTON -->
                             <button type="submit"
                                 class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-sm font-medium shadow">

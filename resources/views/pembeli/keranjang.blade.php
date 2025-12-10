@@ -81,8 +81,8 @@
                                 <div id="item-{{ $item->id }}" class="p-4 flex gap-4 items-center">
                                     <!-- Foto Produk -->
                                     <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
-                                        @if ($item->produk->foto_produk)
-                                            <img src="{{ asset($item->produk->foto_produk) }}"
+                                        @if ($item->produk->foto_produk_url)
+                                            <img src="{{ asset($item->produk->foto_produk_url) }}"
                                                 class="w-full h-full object-cover" alt="{{ $item->produk->nama_produk }}">
                                         @else
                                             <div

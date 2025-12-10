@@ -8,6 +8,7 @@ use App\Enums\UserRole;
 use App\Models\Pembeli;
 use App\Models\Penjual;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -15,7 +16,7 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.dashboard', [
-            'totalPengguna'      => User::count(),
+            'totalPengguna' => User::count() - User::where('role', 'admin')->count(),
             'totalPenjual'       => Penjual::count(),
             'tokoTerverifikasi'  => Toko::where('status_verifikasi', 'Terverifikasi')->count(),
             'tokoMenunggu'       => Toko::where('status_verifikasi', 'Menunggu')->count(),
@@ -74,7 +75,7 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
 
         // Prevent disabling own account
-        if ($user->id === auth()->id()) {
+        if ($user->id === Auth::user()->id) {
             return back()->with('error', 'Anda tidak dapat menonaktifkan akun sendiri.');
         }
 
@@ -86,21 +87,7 @@ class AdminController extends Controller
         return back()->with('success', "Akun pengguna {$user->name} berhasil {$status}.");
     }
 
-    public function lihatKtp(Penjual $penjual)
-    {
-        // Pastikan file ada
-        if (!Storage::disk('private')->exists($penjual->foto_ktp)) {
-            abort(404, 'File tidak ditemukan.');
-        }
-        
-        // Ambil file
-        $file = Storage::disk('private')->get($penjual->foto_ktp);
-        $path = Storage::disk('private')->path($penjual->foto_ktp);
-        $type = mime_content_type($path);
 
-        // Tampilkan sebagai gambar
-        return response($file)->header('Content-Type', $type);
-    }
 
     public function semuaToko(Request $request)
     {

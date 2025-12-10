@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Produk extends Model
 {
@@ -14,6 +15,11 @@ class Produk extends Model
         'stok',
         'foto_produk'
     ];
+
+    /**
+     * Appends accessors to JSON arrays.
+     */
+    protected $appends = ['foto_produk_url'];
 
     /**
      * Relasi Balik ke Toko (Many-to-One)
@@ -38,5 +44,16 @@ class Produk extends Model
     {
         // Produk ini muncul di banyak detail pesanan
         return $this->hasMany(DetailPesanan::class);
+    }
+    public function getFotoProdukUrlAttribute()
+    {
+        if (!$this->foto_produk) {
+            return null;
+        }
+        if(str_starts_with($this->foto_produk, 'http')) {
+            return $this->foto_produk;
+        }
+        $disk = Storage::disk('cloudinary');
+        return $disk->url($this->foto_produk);
     }
 }

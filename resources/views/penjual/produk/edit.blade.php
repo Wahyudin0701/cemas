@@ -40,7 +40,7 @@
 
                     <!-- Preview foto -->
                     <img id="productPreview"
-                        src="{{ $produk->foto_produk ? asset($produk->foto_produk) : 'https://placehold.co/300x300?text=Foto+Produk' }}"
+                        src="{{ $produk->foto_produk_url ?? 'https://placehold.co/300x300?text=Foto+Produk' }}"
                         class="w-80 h-[200px] object-cover rounded-xl shadow-sm border">
 
                     <div class="w-80 border-2 border-dashed border-gray-300 rounded-xl p-6 

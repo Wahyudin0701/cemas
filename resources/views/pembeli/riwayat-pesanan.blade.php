@@ -93,8 +93,8 @@
                                 @foreach ($order->detailPesanans as $detail)
                                     <div class="flex items-start gap-4">
                                         <div class="w-16 h-16 bg-gray-100 rounded-md overflow-hidden flex-shrink-0">
-                                            @if ($detail->produk->foto_produk)
-                                                <img src="{{ asset($detail->produk->foto_produk) }}"
+                                            @if ($detail->produk->foto_produk_url)
+                                                <img src="{{ asset($detail->produk->foto_produk_url) }}"
                                                     class="w-full h-full object-cover"
                                                     alt="{{ $detail->produk->nama_produk }}">
                                             @else

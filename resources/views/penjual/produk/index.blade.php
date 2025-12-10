@@ -17,7 +17,7 @@
 
         <!-- FOTO PRODUK -->
         <div>
-            <img src="{{ $produk->foto_produk ? asset($produk->foto_produk) : 'https://placehold.co/600x600?text=Produk' }}"
+            <img src="{{ $produk->foto_produk_url ?? 'https://placehold.co/600x600?text=Produk' }}"
                 class="rounded-xl shadow-lg border w-full object-cover">
         </div>
 

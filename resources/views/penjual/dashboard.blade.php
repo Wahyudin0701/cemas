@@ -4,7 +4,7 @@
 
 @section('content')
     <header class="relative w-full h-56 overflow-hidden">
-        <img src="{{ $toko->foto_toko ? asset($toko->foto_toko) : 'https://placehold.co/800x400?text=Toko' }}"
+        <img src="{{ $toko->foto_toko_url ?? 'https://placehold.co/800x400?text=Toko' }}"
             class="absolute inset-0 w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-r from-white via-blue-50/70 to-transparent"></div>
     </header>
@@ -59,7 +59,7 @@
                         class="bg-white rounded-xl shadow hover:shadow-xl border border-gray-100 transition overflow-hidden">
 
                         <!-- FOTO PRODUK -->
-                        <img src="{{ $produk->foto_produk ? asset($produk->foto_produk) : 'https://placehold.co/400x400?text=Produk' }}"
+                        <img src="{{ $produk->foto_produk_url ?? 'https://placehold.co/400x400?text=Produk' }}"
                             class="w-full h-36 object-cover">
 
                         <div class="p-4">
