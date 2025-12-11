@@ -27,88 +27,126 @@
 <body class="bg-gray-50 font-sans text-gray-900 antialiased">
 
     @if (request()->routeIs('pembeli.dashboard'))
-    <!-- PEMBELI NAVBAR (Dashboard) -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-8">
-                <a href="{{ route('pembeli.dashboard') }}" class="flex items-center gap-2">
-                    <span class="text-2xl font-bold text-blue-600">CeMas</span>
-                </a>
-            </div>
-
-            <!-- Menu Tengah -->
-            <div class="hidden md:flex space-x-6">
-                <a href="/" class="text-sm font-medium hover:text-blue-600">Homepage</a>
-                <a href="#daftar-toko" class="text-sm font-medium text-gray-600 hover:text-blue-600">Daftar Toko</a>
-                <a href="#tentang" class="text-sm font-medium text-gray-600 hover:text-blue-600">Tentang Kami</a>
-            </div>
-
-            <div class="flex items-center">
-                <!-- User Dropdown -->
-                <div class="relative hidden md:flex">
-                    <button type="button" class="flex items-center gap-3 text-sm text-gray-500 pr-4 mr-1 cursor-pointer focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                        <span>{{ Auth::user()->name }}</span>
-                        <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=random" class="w-8 h-8 rounded-full border">
-                    </button>
-
-                    <div class="origin-top-right absolute right-0 mt-9 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out transform opacity-0 scale-95 invisible" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="user-dropdown-menu">
-                        <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Edit Profile</a>
-                        <a href="{{ route('keranjang.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Keranjang</a>
-                        <a href="{{ route('riwayat-pesanan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Riwayat Pesanan</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Logout</button>
-                        </form>
-                    </div>
+        <!-- PEMBELI NAVBAR (Dashboard) -->
+        <nav class="bg-white shadow-sm sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <a href="{{ route('pembeli.dashboard') }}" class="flex items-center gap-2">
+                        <span class="text-2xl font-bold text-blue-600">CeMas</span>
+                    </a>
                 </div>
-                <!-- Keranjang Icon -->
-                <a href="{{ route('keranjang.index') }}" class="relative p-2 text-gray-600 hover:text-blue-600 transition">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                    </svg>
-                    <span id="cartCountBadge" class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
-                </a>
+
+                <!-- Menu Tengah -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="/" class="text-sm font-medium hover:text-blue-600">Homepage</a>
+                    <a href="#daftar-toko" class="text-sm font-medium text-gray-600 hover:text-blue-600">Daftar Toko</a>
+                    <a href="#tentang" class="text-sm font-medium text-gray-600 hover:text-blue-600">Tentang Kami</a>
+                </div>
+
+                <div class="flex items-center">
+                    <!-- User Dropdown -->
+                    <div class="relative flex">
+                        <button type="button"
+                            class="flex items-center gap-3 text-sm text-gray-500 pr-4 mr-1 cursor-pointer focus:outline-none"
+                            id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <span>{{ Auth::user()->name }}</span>
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=random"
+                                class="w-8 h-8 rounded-full border">
+                        </button>
+
+                        <div class="origin-top-right absolute right-0 mt-9 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out transform opacity-0 scale-95 invisible"
+                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+                            id="user-dropdown-menu">
+                            <a href="{{ route('profile.edit') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1">Edit Profile</a>
+                            <a href="{{ route('keranjang.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1">Keranjang</a>
+                            <a href="{{ route('riwayat-pesanan') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1">Riwayat Pesanan</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="block w-full text-left px-4 py-2 text-sm text-red-700 hover:bg-gray-100"
+                                    role="menuitem" tabindex="-1">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Keranjang Icon -->
+                    <a href="{{ route('keranjang.index') }}"
+                        class="relative p-2 text-gray-600 hover:text-blue-600 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                        <span id="cartCountBadge"
+                            class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     @else
-    <!-- PEMBELI NAVBAR (Simple for other pages) -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="{{ route('pembeli.dashboard') }}" class="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                <span class="hidden md:inline">Kembali</span>
-            </a>
-            <div class="flex items-center">
-                <!-- User Dropdown -->
-                <div class="relative hidden md:flex">
-                    <button type="button" class="flex items-center gap-3 text-sm text-gray-500 pr-4 mr-1 cursor-pointer focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                        <span>{{ Auth::user()->name }}</span>
-                        <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=random" class="w-8 h-8 rounded-full border">
-                    </button>
-                    <div class="origin-top-right absolute right-0 mt-9 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out transform opacity-0 scale-95 invisible" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="user-dropdown-menu">
-                        <a href="{{ route('pembeli.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Dashboard</a>
-                        <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Edit Profile</a>
-                        <a href="{{ route('keranjang.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Keranjang</a>
-                        <a href="{{ route('riwayat-pesanan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Riwayat Pesanan</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Logout</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Keranjang Icon -->
-                <a href="{{ route('keranjang.index') }}" class="relative p-2 text-gray-600 hover:text-blue-600 transition">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+        <!-- PEMBELI NAVBAR (Simple for other pages) -->
+        <nav class="bg-white shadow-sm sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+                <a href="{{ route('pembeli.dashboard') }}"
+                    class="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    <span id="cartCountBadge" class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                    <span class="hidden md:inline">Kembali</span>
                 </a>
+                <div class="flex items-center">
+                    <!-- User Dropdown -->
+                    <div class="relative flex">
+                        <button type="button"
+                            class="flex items-center gap-3 text-sm text-gray-500 pr-4 mr-1 cursor-pointer focus:outline-none"
+                            id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <span>{{ Auth::user()->name }}</span>
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=random"
+                                class="w-8 h-8 rounded-full border">
+                        </button>
+                        <div class="origin-top-right absolute right-0 mt-9 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out transform opacity-0 scale-95 invisible"
+                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+                            id="user-dropdown-menu">
+                            <a href="{{ route('pembeli.dashboard') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1">Dashboard</a>
+                            <a href="{{ route('profile.edit') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1">Edit Profile</a>
+                            <a href="{{ route('keranjang.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1">Keranjang</a>
+                            <a href="{{ route('riwayat-pesanan') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1">Riwayat Pesanan</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="block w-full text-left px-4 py-2 text-sm text-red-700 hover:bg-gray-100"
+                                    role="menuitem" tabindex="-1">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Keranjang Icon -->
+                    <a href="{{ route('keranjang.index') }}"
+                        class="relative p-2 text-gray-600 hover:text-blue-600 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                        <span id="cartCountBadge"
+                            class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     @endif
 
     <!-- Page Content -->
@@ -126,7 +164,7 @@
 
         async function loadCart() {
             try {
-                const res = await fetch('{{ route("keranjang.items") }}');
+                const res = await fetch('{{ route('keranjang.items') }}');
                 const items = await res.json();
                 updateCartBadge(items);
             } catch (e) {

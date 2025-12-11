@@ -13,7 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <style>
         .login-bg {
-            background-image: url('{{ asset("image/lorong_asvil.jpg") }}');
+            background-image: url('{{ asset('Image/lorong_asvil.jpg') }}');
         }
     </style>
 
@@ -32,7 +32,8 @@
 
             <!-- Header -->
             <div class="flex flex-col items-center mb-6">
-                <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
+                <div
+                    class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
                     C
                 </div>
                 <h1 class="mt-2 text-xl font-bold">CeMas</h1>
