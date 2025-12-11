@@ -21,9 +21,8 @@ Route::middleware(['auth' , 'role:penjual'])->prefix('penjual')->group(function 
     Route::delete('/produk/{id}', [ProdukController::class, 'destroy'])->name('penjual.produk.destroy');
 
 
-    Route::get('/toko', function () {
-        return view('penjual.toko');
-    })->name('penjual.toko');
+    Route::get('/toko', [\App\Http\Controllers\TokoController::class, 'edit'])->name('penjual.toko');
+    Route::put('/toko', [\App\Http\Controllers\TokoController::class, 'update'])->name('penjual.toko.update');
 
     Route::get('/pesanan', [\App\Http\Controllers\SellerOrderController::class, 'index'])->name('penjual.pesanan');
     Route::post('/pesanan/{id}/update', [\App\Http\Controllers\SellerOrderController::class, 'updateStatus'])->name('penjual.pesanan.update');
