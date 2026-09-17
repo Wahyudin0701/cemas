@@ -1,59 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CeMas (Community E-Marketplace Aston Villa)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+CeMas adalah platform *e-marketplace* berbasis komunitas yang dirancang khusus untuk warga Perumahan Aston Villa. Aplikasi ini bertujuan untuk mendigitalisasi UMKM lokal, mempermudah transaksi antar warga, dan menggerakkan ekonomi rukun tetangga dengan semangat gotong royong.
 
-## About Laravel
+## Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 1. Untuk Pembeli (Warga)
+- **Katalog Warga:** Jelajahi berbagai produk kebutuhan sehari-hari yang ditawarkan oleh tetangga di sekitar Anda.
+- **Harga Warga & Bebas Ongkir:** Nikmati keuntungan belanja lebih ekonomis dengan penawaran khusus dan gratis ongkir untuk area perumahan.
+- **Profil Toko & Jam Operasional:** Lihat detail toko, status buka/tutup secara *real-time*, dan informasi kontak penjual.
+- **Keranjang & Checkout Mudah:** Tambahkan produk ke keranjang dan lakukan pemesanan dengan mudah.
+- **Riwayat Pesanan:** Lacak status pesanan Anda (Menunggu, Diproses, Selesai, atau Dibatalkan).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 2. Untuk Penjual (UMKM Lokal)
+- **Manajemen Toko:** Kelola profil toko, jam operasional, dan lokasi toko.
+- **Etalase Produk:** Tambah, edit, dan hapus produk dengan mudah.
+- **Manajemen Pesanan:** Terima dan proses pesanan yang masuk dari warga.
+- **Dashboard Interaktif:** Pantau statistik penjualan, total pesanan, dan pendapatan.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 3. Untuk Admin (Pengurus RT)
+- **Verifikasi Toko:** Tinjau dan verifikasi pendaftaran toko baru untuk memastikan keamanan dan kepercayaan komunitas.
+- **Manajemen Pengguna:** Pantau dan kelola data seluruh pengguna (pembeli dan penjual) di dalam platform.
+- **Dashboard Statistik:** Lihat ringkasan aktivitas di dalam *marketplace* warga.
 
-## Learning Laravel
+## Teknologi yang Digunakan
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Aplikasi ini dibangun menggunakan teknologi modern yang kuat dan andal:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Framework Backend:** [Laravel 11](https://laravel.com/) (PHP)
+- **Framework Frontend/UI:** [Tailwind CSS](https://tailwindcss.com/) & [Alpine.js](https://alpinejs.dev/)
+- **Database:** MySQL
+- **Autentikasi:** Laravel Breeze
 
-## Laravel Sponsors
+## Cara Instalasi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Ikuti langkah-langkah berikut untuk menjalankan proyek CeMas di komputer lokal Anda:
 
-### Premium Partners
+1. **Clone repositori ini:**
+   ```bash
+   git clone https://github.com/Wahyudin0701/cemas.git
+   cd cemas
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2. **Install dependensi PHP dan Node.js:**
+   ```bash
+   composer install
+   npm install
+   ```
 
-## Contributing
+3. **Salin file konfigurasi environment:**
+   ```bash
+   cp .env.example .env
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. **Konfigurasi Database di file `.env`:**
+   Sesuaikan `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD` dengan konfigurasi MySQL lokal Anda.
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=cemas_db
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-## Code of Conduct
+5. **Generate Application Key:**
+   ```bash
+   php artisan key:generate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Jalankan Migrasi dan Seeder (Dummy Data):**
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+   *Catatan: Seeder akan otomatis membuat akun Admin, beberapa akun Penjual (beserta tokonya), akun Pembeli, serta data pesanan dummy.*
 
-## Security Vulnerabilities
+7. **Kompilasi Aset Frontend:**
+   ```bash
+   npm run build
+   # atau untuk mode development: npm run dev
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+8. **Jalankan Development Server:**
+   ```bash
+   php artisan serve
+   ```
+   Aplikasi dapat diakses melalui `http://localhost:8000`.
 
-## License
+## Akun Default (Hasil Seeder)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Untuk keperluan *testing*, Anda dapat menggunakan kredensial berikut setelah menjalankan seeder:
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin@cemas.com` | `password` |
+| **Penjual (Toko Budi Jaya)** | `budi@cemas.com` | `password` |
+| **Penjual (Aminah Collection)** | `aminah@cemas.com` | `password` |
+| **Penjual (Andi Elektronik)** | `andi@cemas.com` | `password` |
+| **Pembeli 1** | `joko@cemas.com` | `password` |
+| **Pembeli 2** | `siti@cemas.com` | `password` |
+
+---
+*Dibuat dengan ❤️ untuk warga Perumahan Aston Villa.*
