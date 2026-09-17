@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         } elseif ($user->role === UserRole::Penjual) {
             return redirect()->route('penjual.cek-status');
         } else {
-            return redirect()->route('pembeli.dashboard');
+            return redirect()->route('home');
         }
 
         // return redirect()->intended($redirectRoute);

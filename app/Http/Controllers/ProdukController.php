@@ -19,6 +19,15 @@ class ProdukController extends Controller
     }
 
 
+    public function kelolaProduk()
+    {
+        $user = Auth::user();
+        $toko = $user->penjual->toko;
+        $produkList = $toko->produks()->latest()->get();
+
+        return view('penjual.produk.kelola', compact('produkList'));
+    }
+
     // Form tambah produk
     public function tambahProduk()
     {

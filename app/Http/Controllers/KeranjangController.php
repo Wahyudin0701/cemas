@@ -42,7 +42,10 @@ class KeranjangController extends Controller
 
         $user = Auth::user();
         if (!$user || !$user->pembeli) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+            return redirect()->route('login')->with('error', 'Silahkan login sebagai pembeli terlebih dahulu.');
         }
 
         $produk = Produk::findOrFail($request->produk_id);
@@ -50,7 +53,10 @@ class KeranjangController extends Controller
         // Validate that the product belongs to the current shop if toko_id is provided
         if ($request->has('toko_id')) {
             if ($produk->toko_id != $request->toko_id) {
-                return response()->json(['message' => 'Produk tidak valid untuk toko ini'], 400);
+                if ($request->wantsJson() || $request->ajax()) {
+                    return response()->json(['message' => 'Produk tidak valid untuk toko ini'], 400);
+                }
+                return redirect()->back()->with('error', 'Produk tidak valid untuk toko ini');
             }
         }
         
@@ -74,9 +80,12 @@ class KeranjangController extends Controller
         $currentQty = $detail ? $detail->jumlah_produk : 0;
         
         if (($currentQty + $qtyTambah) > $produk->stok) {
-            return response()->json([
-                'message' => 'Stok tidak mencukupi. Sisa stok: ' . $produk->stok
-            ], 400);
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json([
+                    'message' => 'Stok tidak mencukupi. Sisa stok: ' . $produk->stok
+                ], 400);
+            }
+            return redirect()->back()->with('error', 'Stok tidak mencukupi. Sisa stok: ' . $produk->stok);
         }
 
         if ($detail) {
@@ -90,7 +99,13 @@ class KeranjangController extends Controller
             ]);
         }
 
-        return response()->json(['message' => 'Produk berhasil ditambahkan ke keranjang toko ' . $produk->toko->nama_toko]);
+        
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json(['message' => 'Produk berhasil ditambahkan ke keranjang toko ' . $produk->toko->nama_toko]);
+        }
+        
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
     }
 
     public function getCartItems(Request $request)

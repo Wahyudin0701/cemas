@@ -12,7 +12,7 @@ Route::middleware(['auth' , 'role:penjual'])->prefix('penjual')->group(function 
 
     Route::get('/dashboard', [PenjualController::class, 'index'])->name('penjual.dashboard');
 
-
+    Route::get('/kelola-produk', [ProdukController::class, 'kelolaProduk'])->name('penjual.kelola-produk');
     Route::get('/produk/{id}',  [ProdukController::class, 'index'])->name('penjual.detail-produk');
     Route::get('/tambah-produk', [ProdukController::class, 'tambahProduk'])->name('penjual.tambah-produk');
     Route::post('/produk', [ProdukController::class, 'storeProduk'])->name('penjual.produk.store');

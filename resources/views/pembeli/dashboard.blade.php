@@ -1,176 +1,120 @@
 @extends('layouts.pembeli')
 
-@section('title', 'Dashboard Pembeli - CeMas')
+@section('title', 'Beranda Pembeli - CeMas')
 
 @push('styles')
     <style>
-        /* Smooth fade animation */
         .fade-in {
             opacity: 0;
             transform: translateY(15px);
             transition: all 0.6s ease-out;
         }
-
         .fade-in.show {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        .hero-bg {
-            background: linear-gradient(135deg, #eef3ff 0%, #dee8ff 100%);
-        }
-
-        .card {
-            transition: all 0.25s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
         }
     </style>
 @endpush
 
 @section('content')
 
-    <section
-        class="pt-24 pb-24 min-h-screen flex items-center fade-in bg-gradient-to-br from-gray-50 via-blue-50 to-blue-300">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h1 class="text-5xl font-extrabold text-gray-900 leading-tight">
-                    Platform UMKM Digital Berbasis Komunitas
+    <!-- HERO SECTION -->
+    <section class="pt-32 pb-16 min-h-[60vh] flex items-center fade-in bg-gradient-to-br from-slate-50 via-primary-50/50 to-primary-100/30">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-primary-100 text-primary-700 font-semibold text-sm mb-2 shadow-sm border border-primary-200">
+                    👋 Selamat datang, {{ Auth::user()->name }}
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
+                    Mulai Belanja dari <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Toko Tetangga</span>
                 </h1>
-                <h2 class="text-2xl mt-3 font-semi">
-                    Community E-Marketplace Aston Villa
-                </h2>
-
-                <p class="mt-6 text-lg text-gray-600 max-w-md leading-relaxed">
-                    Belanja kebutuhan harian, makanan, dan lain lain dari tetangga Anda sendiri.
-                    CeMas mendukung pemberdayaan warga melalui digitalisasi UMKM lingkungan.
+                
+                <p class="text-lg text-slate-600 max-w-lg leading-relaxed font-medium">
+                    Temukan bahan pokok, makanan, dan kebutuhan lainnya dari UMKM warga di sekitar Anda.
                 </p>
 
-                <a href="#daftar-toko"
-                    class="mt-8 inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg transition">
-                    Jelajahi Toko Warga
-                    <span class="ml-2">→</span>
-                </a>
+                <div class="pt-4 flex items-center gap-4">
+                    <a href="#daftar-toko" class="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white px-8 py-3.5 rounded-xl font-semibold shadow-lg shadow-primary-600/30 transition-all hover:-translate-y-0.5">
+                        Jelajahi Toko
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
             </div>
-            <div class="hidden md:block">
-                <img src="{{ asset('Image/lorong_asvil.jpg') }}"
-                    class="rounded-xl shadow-lg hover:scale-[1.02] duration-500" alt="Lorong Aston Villa">
+            <div class="hidden md:block relative">
+                <div class="absolute inset-0 bg-primary-200 rounded-3xl transform rotate-3 scale-105 opacity-50 blur-lg"></div>
+                <img src="{{ asset('Image/lorong_asvil.jpg') }}" class="relative rounded-3xl shadow-2xl object-cover h-[400px] w-full hover:scale-[1.02] transition-transform duration-500 border-4 border-white" alt="Lorong Aston Villa">
             </div>
         </div>
     </section>
 
     <!-- DAFTAR TOKO -->
-    <section id="daftar-toko" class="min-h-screen pt-24 bg-gradient-to-tr from-gray-50 via-blue-50 to-blue-300">
-        <div class="max-w-7xl mx-auto px-4">
+    <section id="daftar-toko" class="min-h-screen py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
 
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900">Toko Warga Terverifikasi</h2>
-                <p class="mt-4 text-gray-600 text-lg">
-                    Belanja aman dari UMKM lokal yang telah diverifikasi pengurus RT.
+            <div class="text-center mb-16 fade-in">
+                <span class="text-primary-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Katalog Warga</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Toko Warga Terverifikasi</h2>
+                <p class="mt-4 text-slate-600 text-lg max-w-2xl mx-auto">
+                    Pilih toko langganan Anda dan nikmati kemudahan berbelanja langsung dari warga sekitar.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
 
                 @foreach ($tokoList as $toko)
-                    <div
-                        class="card bg-white p-6 rounded-xl shadow border border-gray-100 
-                            transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                        @if($toko->foto_toko_url)
-                        <img src="{{ $toko->foto_toko_url ?? 'https://placehold.co/400x400?text=Toko' }}"
-                            class="w-full h-36 object-cover">
-                        @endif
-                        <h3 class="text-xl font-bold text-gray-900">{{ $toko->nama_toko }}</h3>
+                    <div class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="aspect-video w-full overflow-hidden bg-slate-100 relative">
+                            @if($toko->foto_toko_url)
+                                <img src="{{ $toko->foto_toko_url }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="{{ $toko->nama_toko }}">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center text-slate-400">
+                                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                </div>
+                            @endif
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-primary-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Buka
+                            </div>
+                        </div>
+                        
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors">{{ $toko->nama_toko }}</h3>
 
-                        <p class="text-gray-600 mt-2">
-                            {{ $toko->deskripsi_toko ?? 'Tidak ada deskripsi.' }}
-                        </p>
+                            <p class="text-slate-500 mt-2 text-sm line-clamp-2">
+                                {{ $toko->deskripsi_toko ?? 'Toko ini belum menambahkan deskripsi.' }}
+                            </p>
 
-                        <span class="text-orange-600 text-sm font-medium mt-3 inline-block">
-                            {{ $toko->lokasi }}
-                        </span>
+                            <div class="mt-4 flex items-center text-slate-500 text-sm">
+                                <svg class="w-4 h-4 mr-1 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                {{ $toko->lokasi }}
+                            </div>
 
-                        <div class="mt-4">
-                            <a href="{{ route('detail-toko', $toko->id) }}"
-                                class="text-blue-600 hover:text-blue-800 font-semibold">
-                                Lihat Detail →
-                            </a>
+                            <div class="mt-6 pt-4 border-t border-slate-100">
+                                <a href="{{ route('detail-toko', $toko->id) }}" class="flex items-center justify-between text-primary-600 hover:text-primary-700 font-semibold text-sm transition-colors w-full">
+                                    <span>Masuk ke Toko</span>
+                                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
 
-                {{-- Jika tidak ada toko terverifikasi --}}
                 @if ($tokoList->isEmpty())
-                    <p class="text-gray-600 text-center col-span-full">
-                        Belum ada toko yang terverifikasi.
-                    </p>
+                    <div class="col-span-full py-12 text-center bg-white rounded-2xl border border-slate-100 border-dashed">
+                        <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                        <p class="text-slate-500 font-medium">Belum ada toko yang terverifikasi.</p>
+                        <p class="text-sm text-slate-400 mt-1">Coba kembali beberapa saat lagi.</p>
+                    </div>
                 @endif
 
             </div>
         </div>
     </section>
 
-
-    <!-- TENTANG KAMI -->
-    <section id="tentang" class="py-24 bg-gradient-to-b from-white to-blue-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <!-- Heading -->
-            <div class="text-center mb-14 fade-in">
-                <h2 class="text-4xl font-extrabold text-gray-900">Tentang CeMas</h2>
-                <p class="mt-4 text-gray-600 text-lg max-w-2xl mx-auto">
-                    CeMas (Community E-Marketplace Aston Villa) hadir untuk mendukung UMKM warga
-                    dengan platform digital sederhana, aman, dan mudah digunakan.
-                </p>
-            </div>
-
-            <!-- GRID CONTENT -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 fade-in">
-
-                <!-- CARD 1 -->
-                <div
-                    class="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-lg 
-                        transition duration-300 text-center">
-
-                    <h3 class="text-lg font-bold text-gray-900 mt-5">Memberdayakan UMKM</h3>
-                    <p class="text-gray-600 text-sm mt-2">
-                        Membantu warga Aston Villa memasarkan produk dan jasa mereka melalui platform daring
-                        yang mudah diakses.
-                    </p>
-                </div>
-
-                <!-- CARD 2 -->
-                <div
-                    class="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-lg 
-                        transition duration-300 text-center">
-
-                    <h3 class="text-lg font-bold text-gray-900 mt-5">Untuk Komunitas</h3>
-                    <p class="text-gray-600 text-sm mt-2">
-                        CeMas dibangun khusus untuk warga, sehingga transaksi lebih dekat, mudah, dan mendukung ekonomi
-                        lokal.
-                    </p>
-                </div>
-
-                <!-- CARD 3 -->
-                <div
-                    class="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-lg 
-                        transition duration-300 text-center">
-
-                    <h3 class="text-lg font-bold text-gray-900 mt-5">Aman & Terverifikasi</h3>
-                    <p class="text-gray-600 text-sm mt-2">
-                        Setiap toko diverifikasi oleh pengurus RT, sehingga pembeli dapat berbelanja dengan rasa aman.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-6 text-center">
-        <p>© {{ date('Y') }} CeMas — Dibuat oleh Warga, untuk Warga.</p>
+    <footer class="bg-slate-900 text-white py-8 text-center border-t border-slate-800">
+        <p class="text-slate-400 font-medium tracking-wide">© {{ date('Y') }} CeMas — Dibuat oleh Warga, untuk Warga.</p>
     </footer>
+
 @endsection
 
 @push('scripts')

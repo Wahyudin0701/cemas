@@ -46,6 +46,8 @@ class TokoController extends Controller
             'alamat'          => 'required|string|max:255',
             'kontak'          => 'required|string|max:20',
             'deskripsi'       => 'nullable|string',
+            'jam_buka'        => 'required|date_format:H:i',
+            'jam_tutup'       => 'required|date_format:H:i',
             'foto_toko'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -72,6 +74,8 @@ class TokoController extends Controller
             'nama_toko'      => $validated['nama_toko'],
             'lokasi'         => $validated['alamat'],
             'deskripsi_toko' => $validated['deskripsi'],
+            'jam_buka'       => $validated['jam_buka'] ?? $toko->jam_buka,
+            'jam_tutup'      => $validated['jam_tutup'] ?? $toko->jam_tutup,
             'foto_toko'      => $pathFoto,
         ]);
 

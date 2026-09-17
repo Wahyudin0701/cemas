@@ -53,7 +53,6 @@ class Produk extends Model
         if(str_starts_with($this->foto_produk, 'http')) {
             return $this->foto_produk;
         }
-        $disk = Storage::disk('cloudinary');
-        return $disk->url($this->foto_produk);
+        return cloudinary()->image($this->foto_produk)->toUrl();
     }
 }

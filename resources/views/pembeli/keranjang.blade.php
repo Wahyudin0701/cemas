@@ -19,23 +19,27 @@
 
 @section('content')
 
-    <div class="max-w-4xl mx-auto px-4 py-8 fade-in">
+    <div class="max-w-5xl mx-auto px-6 py-12 fade-in min-h-screen">
 
-        <h2 class="text-3xl font-extrabold text-gray-900">Keranjang Belanja</h2>
-        <p class="text-gray-600 mt-2 mb-10">
-            Informasi lengkap mengenai keranjang belanja.
-        </p>
+        <div class="mb-10">
+            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Keranjang Belanja</h2>
+            <p class="text-slate-500 mt-2 font-medium">
+                Periksa kembali pesanan Anda sebelum melanjutkan ke pembayaran.
+            </p>
+        </div>
 
         @if (empty($cartGroups))
-            <div class="text-center py-20 bg-white rounded-xl shadow-sm border border-dashed border-gray-300">
-                <svg class="w-20 h-20 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <div class="text-center py-24 bg-white rounded-3xl shadow-sm border border-slate-200 border-dashed">
+                <svg class="w-24 h-24 text-slate-300 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                         d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                 </svg>
-                <h3 class="text-xl font-medium text-gray-400">Keranjang masih kosong</h3>
+                <h3 class="text-xl font-bold text-slate-700">Keranjang masih kosong</h3>
+                <p class="text-slate-500 mt-2 mb-6">Yuk temukan produk menarik dari tetangga Anda!</p>
                 <a href="{{ route('pembeli.dashboard') }}"
-                    class="mt-4 inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Mulai
-                    Belanja</a>
+                    class="inline-flex items-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 hover:-translate-y-0.5 shadow-lg shadow-primary-600/30 transition-all">
+                    Mulai Belanja
+                </a>
             </div>
         @else
             <div class="space-y-8">
@@ -52,119 +56,129 @@
 
                     <!-- FORM CHECKOUT PER TOKO -->
                     <form action="{{ route('checkout.process') }}" method="POST"
-                        class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                        class="bg-white rounded-3xl shadow-xl shadow-slate-200/40 border border-slate-100 overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300">
                         @csrf
                         <input type="hidden" name="toko_id" value="{{ $toko->id }}">
 
                         <!-- Header Toko -->
-                        <div class="bg-gray-50 px-6 py-3 border-b flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
-                                    </path>
-                                </svg>
-                                <span class="font-bold text-gray-800 text-lg">{{ $toko->nama_toko }}</span>
+                        <div class="bg-gradient-to-r from-slate-50 to-white px-5 py-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-600 shadow-sm border border-primary-100">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-slate-800 text-lg block leading-tight">{{ $toko->nama_toko }}</span>
+                                    <span class="text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-1">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                        {{ $toko->lokasi }}
+                                    </span>
+                                </div>
                             </div>
                             <!-- Pilihan Pengambilan per Toko -->
                             <div>
                                 <select name="metode_pengambilan"
-                                    class="text-sm border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="Diantar Penjual">Diantar Penjual</option>
-                                    <option value="Ambil di Toko">Ambil Sendiri</option>
+                                    class="text-sm border-slate-200 text-slate-700 font-bold py-2 pl-3 pr-10 rounded-lg focus:border-primary-500 focus:ring-primary-500 bg-white shadow-sm hover:border-primary-300 transition-colors cursor-pointer">
+                                    <option value="Diantar Penjual">🛵 Diantar Penjual</option>
+                                    <option value="Ambil di Toko">🏪 Ambil di Toko</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="divide-y">
+                        <div class="divide-y divide-slate-100/80 p-2 md:p-4">
                             @foreach ($items as $item)
-                                <div id="item-{{ $item->id }}" class="p-4 flex gap-4 items-center">
+                                <div id="item-{{ $item->id }}" class="p-4 flex flex-wrap md:flex-nowrap gap-5 items-center hover:bg-slate-50/50 rounded-2xl transition-colors">
                                     <!-- Foto Produk -->
-                                    <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                                    <div class="w-20 h-20 md:w-24 md:h-24 bg-slate-100 rounded-xl overflow-hidden flex-shrink-0 border border-slate-200/60 shadow-sm relative group-hover:shadow-md transition-shadow">
                                         @if ($item->produk->foto_produk_url)
                                             <img src="{{ asset($item->produk->foto_produk_url) }}"
-                                                class="w-full h-full object-cover" alt="{{ $item->produk->nama_produk }}">
+                                                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" alt="{{ $item->produk->nama_produk }}">
                                         @else
-                                            <div
-                                                class="w-full h-full flex items-center justify-center text-gray-400 text-xs">
-                                                IMG</div>
+                                            <div class="w-full h-full flex items-center justify-center text-slate-300">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                            </div>
                                         @endif
                                     </div>
 
                                     <!-- Detail Produk -->
-                                    <div class="flex-1">
-                                        <h4 class="font-medium text-gray-800">{{ $item->produk->nama_produk }}</h4>
-                                        <p class="text-blue-600 font-bold mt-1">
-                                            Rp {{ number_format($item->produk->harga, 0, ',', '.') }}
+                                    <div class="flex-1 min-w-[150px]">
+                                        <h4 class="font-bold text-slate-800 text-base">{{ $item->produk->nama_produk }}</h4>
+                                        <p class="text-primary-600 font-extrabold mt-1 text-lg tracking-tight">
+                                            Rp{{ number_format($item->produk->harga, 0, ',', '.') }}
                                         </p>
                                     </div>
 
-                                    <!-- Qty Control -->
-                                    <div class="flex items-center gap-2">
-                                        <button type="button" onclick="updateQty('{{ $item->id }}', -1)"
-                                            class="w-8 h-8 rounded-full border flex items-center justify-center hover:bg-gray-100 text-gray-600 font-bold">-</button>
-                                        <input type="number" id="qty-{{ $item->id }}"
-                                            value="{{ $item->jumlah_produk }}"
-                                            class="w-12 text-center border-none text-gray-800 font-medium focus:ring-0 appearance-none bg-transparent"
-                                            readonly>
-                                        <button type="button" onclick="updateQty('{{ $item->id }}', 1)"
-                                            class="w-8 h-8 rounded-full border flex items-center justify-center hover:bg-gray-100 text-gray-600 font-bold">+</button>
-                                    </div>
+                                    <div class="flex items-center gap-4 ml-auto bg-white p-1.5 rounded-xl border border-slate-100 shadow-sm">
+                                        <!-- Qty Control -->
+                                        <div class="flex items-center bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
+                                            <button type="button" onclick="updateQty('{{ $item->id }}', -1)"
+                                                class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-all font-bold text-lg active:bg-slate-300">-</button>
+                                            <input type="number" id="qty-{{ $item->id }}"
+                                                value="{{ $item->jumlah_produk }}"
+                                                class="w-10 text-center border-none text-slate-800 font-bold focus:ring-0 appearance-none bg-transparent p-0 text-sm"
+                                                readonly>
+                                            <button type="button" onclick="updateQty('{{ $item->id }}', 1)"
+                                                class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-all font-bold text-lg active:bg-slate-300">+</button>
+                                        </div>
 
-                                    <!-- Hapus -->
-                                    <button type="button" onclick="removeItem('{{ $item->produk_id }}')"
-                                        class="text-gray-400 hover:text-red-500 p-2 transition">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                            </path>
-                                        </svg>
-                                    </button>
+                                        <!-- Hapus -->
+                                        <button type="button" onclick="removeItem('{{ $item->produk_id }}')"
+                                            class="text-slate-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors group" title="Hapus Produk">
+                                            <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
 
                         <!-- Footer per Toko -->
-                        <div class="bg-blue-50/50 p-4 border-t flex flex-wrap items-center justify-between gap-4">
-                            <div>
+                        <div class="bg-primary-50/50 p-5 md:p-6 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+                            <div class="absolute -right-10 -bottom-10 w-24 h-24 bg-primary-100 rounded-full opacity-50 pointer-events-none"></div>
+                            
+                            <div class="w-full md:w-1/2 relative z-10">
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                    Catatan Pesanan (Opsional)
+                                </label>
                                 <textarea name="catatan_pembeli" rows="1"
-                                    class="w-full md:w-80 border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder-gray-400 text-sm p-2"
-                                    placeholder="Catatan untuk penjual..."></textarea>
+                                    class="w-full border-slate-200 rounded-lg focus:border-primary-500 focus:ring-primary-500 placeholder-slate-400 text-sm py-2 px-3 transition-colors resize-none shadow-sm"
+                                    placeholder="Contoh: Tolong pilihkan yang segar..."></textarea>
                             </div>
 
-                            <div class="flex items-center gap-6">
+                            <div class="flex items-center gap-5 w-full md:w-auto justify-between md:justify-end relative z-10">
                                 <div class="text-right">
-                                    <p class="text-xs text-gray-500">Total Toko</p>
-                                    <h3 id="shop-total-{{ $toko->id }}" class="text-xl font-bold text-blue-700">Rp
-                                        {{ number_format($subtotalToko, 0, ',', '.') }}</h3>
+                                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Subtotal Toko</p>
+                                    <h3 id="shop-total-{{ $toko->id }}" class="text-xl md:text-2xl font-black text-primary-700 tracking-tight drop-shadow-sm">Rp{{ number_format($subtotalToko, 0, ',', '.') }}</h3>
                                 </div>
                                 <button type="submit"
-                                    class="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-md flex items-center gap-2">
-                                    Checkout Toko Ini
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    class="px-6 py-2.5 bg-primary-600 text-white font-bold text-base rounded-lg hover:bg-primary-700 hover:-translate-y-0.5 transition-all shadow-md shadow-primary-600/30 flex items-center gap-2 group">
+                                    Checkout
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                     </svg>
                                 </button>
                             </div>
                         </div>
-
                     </form>
                 @endforeach
             </div>
-
-            <!-- Spacer -->
-            <div class="h-20"></div>
-
         @endif
     </div>
 
     <!-- TOAST NOTIFICATION -->
     <div id="toast"
-        class="fixed top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg transform translate-y-[-150%] transition duration-300 z-50">
-        <span id="toast-message">Notifikasi</span>
+        class="fixed top-24 right-6 bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl transform translate-y-[-150%] opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+        <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span id="toast-message" class="font-medium">Notifikasi</span>
     </div>
-
 @endsection
 
 @push('scripts')
@@ -180,15 +194,25 @@
             if (!toast || !msgEl) return;
 
             msgEl.textContent = message;
-            toast.className =
-                `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg transform transition duration-300 z-50 ${isError ? 'bg-red-600' : 'bg-gray-800'} text-white translate-y-0`;
+            
+            // Remove previous color classes
+            toast.classList.remove('bg-slate-900', 'bg-red-600', 'text-white', 'opacity-0', 'translate-y-[-150%]');
+            
+            if (isError) {
+                toast.classList.add('bg-red-600', 'text-white');
+            } else {
+                toast.classList.add('bg-slate-900', 'text-white');
+            }
 
-            // Clear previous timeout if any (simple implementation)
+            // Show
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            // Clear previous timeout if any
             if (toast.timeoutId) clearTimeout(toast.timeoutId);
 
             toast.timeoutId = setTimeout(() => {
-                toast.classList.add('translate-y-[-150%]');
-                toast.classList.remove('translate-y-0');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-[-150%]');
             }, 3000);
         }
 

@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'CeMas') }}</title>
 
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('Image/logo.png') }}" type="image/png">
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .login-bg {
             background-image: url('{{ asset('Image/lorong_asvil.jpg') }}');
@@ -27,21 +30,18 @@
     <div class="min-h-screen flex items-center justify-center px-4">
 
         <!-- BLUR FOLLOW CONTENT -->
-        <div class="w-full max-w-xl bg-white/30 backdrop-blur-2xl 
-                    rounded-3xl shadow-2xl p-8">
+        <div class="w-full max-w-xl bg-white/40 backdrop-blur-3xl rounded-3xl shadow-2xl p-6 md:p-8 border border-white/50">
 
             <!-- Header -->
-            <div class="flex flex-col items-center mb-6">
-                <div
-                    class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
-                    C
-                </div>
-                <h1 class="mt-2 text-xl font-bold">CeMas</h1>
-                <p class="text-xs text-gray-600 -mt-1">Community E-Marketplace Aston Villa</p>
+            <div class="flex flex-col items-center mb-8">
+                <a href="/">
+                    <img src="{{ asset('Image/logo.png') }}" alt="CeMas Logo" class="h-16 object-contain drop-shadow-md hover:scale-105 transition-transform">
+                </a>
+                <p class="text-sm font-medium text-slate-700 mt-3 tracking-wide">Community E-Marketplace Aston Villa</p>
             </div>
 
             <!-- FORM -->
-            <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow p-6">
+            <div class="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-slate-200/50 p-6 md:p-8 border border-white">
                 {{ $slot }}
             </div>
 

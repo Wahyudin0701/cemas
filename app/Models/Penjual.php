@@ -41,7 +41,6 @@ class Penjual extends Model
         if(str_starts_with($this->foto_ktp, 'http')) {
             return $this->foto_ktp;
         }
-        $disk = Storage::disk('cloudinary');
-        return $disk->url($this->foto_ktp);
+        return cloudinary()->image($this->foto_ktp)->toUrl();
     }
 }

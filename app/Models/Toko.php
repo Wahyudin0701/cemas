@@ -51,7 +51,6 @@ class Toko extends Model
         if(str_starts_with($this->foto_toko, 'http')) {
             return $this->foto_toko;
         }
-        $disk = Storage::disk('cloudinary');
-        return $disk->url($this->foto_toko);
+        return cloudinary()->image($this->foto_toko)->toUrl();
     }
 }

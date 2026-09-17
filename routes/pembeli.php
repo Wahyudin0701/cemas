@@ -7,10 +7,9 @@ use App\Http\Controllers\KeranjangController;
 
 Route::middleware(['auth', 'role:pembeli'])->group(function () {
 
-    Route::get('/dashboard', [PembeliController::class, 'daftarToko'])->name('pembeli.dashboard');
-
-    Route::get('/lihat-toko/{id}', [PembeliController::class, 'lihatToko'])->name('detail-toko');
-
+    Route::get('/dashboard', function() {
+        return redirect()->route('home');
+    })->name('pembeli.dashboard');
     Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
     Route::post('/keranjang/tambah', [KeranjangController::class, 'addToCart'])->name('keranjang.tambah');
     Route::post('/keranjang/update-qty', [KeranjangController::class, 'updateQty'])->name('keranjang.updateQty');
@@ -20,4 +19,8 @@ Route::middleware(['auth', 'role:pembeli'])->group(function () {
 
     Route::get('/riwayat-pesanan', [\App\Http\Controllers\OrderHistoryController::class, 'index'])->name('riwayat-pesanan');
     Route::get('/riwayat-pesanan/{id}', [\App\Http\Controllers\OrderHistoryController::class, 'show'])->name('pesanan.detail');
+});
+
+Route::middleware(['auth', 'role:pembeli,admin'])->group(function () {
+    Route::get('/lihat-toko/{id}', [PembeliController::class, 'lihatToko'])->name('detail-toko');
 });

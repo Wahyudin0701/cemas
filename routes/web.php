@@ -7,6 +7,9 @@ use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/daftar-toko', [HomeController::class, 'daftarToko'])->name('daftar-toko');
+Route::get('/produk', [HomeController::class, 'semuaProduk'])->name('semua-produk');
+Route::get('/tentang-cemas', [HomeController::class, 'tentangCemas'])->name('tentang-cemas');
 
 Route::middleware('auth')->controller(ProfileController::class)->group(function () {
     Route::get('/profile/edit', 'edit')->name('profile.edit');
