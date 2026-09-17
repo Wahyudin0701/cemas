@@ -181,7 +181,7 @@
 
                     <!-- Papan Rak / Shelf background -->
                     <div class="bg-[#f4f1ea] rounded-2xl p-4 sm:p-6 shadow-inner border-t-8 border-[#e6e2d8] relative" x-data="{ showProductModal: false, activeProduct: null }">
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 relative z-10">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 relative z-10">
                             @forelse ($toko->produks as $produk)
                                 <div class="bg-white rounded-xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 group flex flex-col h-full transform hover:-translate-y-1">
                                     <div class="relative overflow-hidden aspect-square bg-gray-50 border-b border-gray-100 cursor-pointer" 

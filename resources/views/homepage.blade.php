@@ -242,7 +242,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 fade-in" x-data="{ showProductModal: false, activeProduct: null }">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 fade-in" x-data="{ showProductModal: false, activeProduct: null }">
                 @foreach ($produkList as $produk)
                     <div class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col">
                         <div class="aspect-square w-full overflow-hidden bg-slate-100 relative cursor-pointer"

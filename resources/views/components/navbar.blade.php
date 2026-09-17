@@ -62,7 +62,7 @@
         @endif
 
         <!-- Right Side: Profile & Cart -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 sm:gap-4">
             
             <!-- Keranjang & Riwayat Icon (Pembeli Only) -->
             @if(Auth::check() && Auth::user()->isPembeli())
@@ -125,12 +125,12 @@
             </div>
             @else
             <!-- Guest Buttons -->
-            <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-primary-600 px-3 py-2 transition-colors">Masuk</a>
+            <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-primary-600 px-1 sm:px-3 py-2 transition-colors hidden min-[360px]:block">Masuk</a>
             
             <div class="relative" x-data="{ openReg: false }" @click.away="openReg = false">
-                <button @click="openReg = !openReg" class="flex items-center gap-1 text-sm font-medium bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors shadow-sm shadow-primary-200">
+                <button @click="openReg = !openReg" class="flex items-center gap-1 text-xs sm:text-sm font-medium bg-primary-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-primary-700 transition-colors shadow-sm shadow-primary-200 shrink-0">
                     Daftar
-                    <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': openReg }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-200" :class="{ 'rotate-180': openReg }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
