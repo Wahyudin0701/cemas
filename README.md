@@ -10,19 +10,8 @@ CeMas adalah platform *e-marketplace* berbasis komunitas yang dirancang khusus u
 
 ---
 
-## 📸 Tangkapan Layar (Screenshots)
-
 ### Halaman Beranda (Katalog Warga)
 ![Halaman Beranda](public/Image/beranda.png)
-
-### Dasbor Pembeli & Keranjang
-![Dashboard Pembeli](public/Image/pembeli.png)
-
-### Dasbor Penjual (Manajemen Toko)
-![Dashboard Penjual](public/Image/dashboard_penjual.png)
-
-### Dasbor Admin (Verifikasi Toko)
-![Dashboard Admin](public/Image/dashboard_admin.png)
 
 ---
 
@@ -122,5 +111,3 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek CeMas di komputer lokal A
    ```
    Aplikasi dapat diakses melalui `http://localhost:8000`.
 
----
-*Dibuat dengan ❤️ untuk warga Perumahan Aston Villa.*
