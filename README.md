@@ -1,8 +1,32 @@
+<div align="center">
+   <img src="public/Image/logo.png" alt="CeMas Logo" width="200">
+</div>
+
 # CeMas (Community E-Marketplace Aston Villa)
 
 CeMas adalah platform *e-marketplace* berbasis komunitas yang dirancang khusus untuk warga Perumahan Aston Villa. Aplikasi ini bertujuan untuk mendigitalisasi UMKM lokal, mempermudah transaksi antar warga, dan menggerakkan ekonomi rukun tetangga dengan semangat gotong royong.
 
-## Fitur Utama
+🌐 **Kunjungi Web:** [https://cemas.vercel.app](https://cemas.vercel.app)
+
+---
+
+## 📸 Tangkapan Layar (Screenshots)
+
+### Halaman Beranda (Katalog Warga)
+![Halaman Beranda](public/Image/beranda.png)
+
+### Dasbor Pembeli & Keranjang
+![Dashboard Pembeli](public/Image/pembeli.png)
+
+### Dasbor Penjual (Manajemen Toko)
+![Dashboard Penjual](public/Image/dashboard_penjual.png)
+
+### Dasbor Admin (Verifikasi Toko)
+![Dashboard Admin](public/Image/dashboard_admin.png)
+
+---
+
+## ⚙️ Fitur Utama
 
 ### 1. Untuk Pembeli (Warga)
 - **Katalog Warga:** Jelajahi berbagai produk kebutuhan sehari-hari yang ditawarkan oleh tetangga di sekitar Anda.
@@ -22,7 +46,7 @@ CeMas adalah platform *e-marketplace* berbasis komunitas yang dirancang khusus u
 - **Manajemen Pengguna:** Pantau dan kelola data seluruh pengguna (pembeli dan penjual) di dalam platform.
 - **Dashboard Statistik:** Lihat ringkasan aktivitas di dalam *marketplace* warga.
 
-## Teknologi yang Digunakan
+## 🛠️ Teknologi yang Digunakan
 
 Aplikasi ini dibangun menggunakan teknologi modern yang kuat dan andal:
 
@@ -31,7 +55,20 @@ Aplikasi ini dibangun menggunakan teknologi modern yang kuat dan andal:
 - **Database:** MySQL
 - **Autentikasi:** Laravel Breeze
 
-## Cara Instalasi
+## 🔐 Akun Login (Demo)
+
+Untuk keperluan *testing* di [cemas.vercel.app](https://cemas.vercel.app), Anda dapat menggunakan kredensial berikut (Password untuk semua akun: `password`):
+
+| Role | Email | Nama Entitas |
+| :--- | :--- | :--- |
+| **Admin** | `admin@rt.com` | Administrator RT |
+| **Penjual** | `penjual@gmail.com` | Toko Budi Jaya |
+| **Penjual** | `siti.toko@gmail.com` | Aminah Collection |
+| **Penjual** | `andi.elektronik@gmail.com` | Andi Elektronik |
+| **Pembeli** | `pembeli@gmail.com` | Pembeli Warga 1 |
+| **Pembeli** | `dwisaputra@gmail.com` | Pembeli Warga 2 |
+
+## 🚀 Cara Instalasi (Lokal)
 
 Ikuti langkah-langkah berikut untuk menjalankan proyek CeMas di komputer lokal Anda:
 
@@ -68,11 +105,10 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek CeMas di komputer lokal A
    php artisan key:generate
    ```
 
-6. **Jalankan Migrasi dan Seeder (Dummy Data):**
+6. **Jalankan Migrasi dan Seeder:**
    ```bash
    php artisan migrate:fresh --seed
    ```
-   *Catatan: Seeder akan otomatis membuat akun Admin, beberapa akun Penjual (beserta tokonya), akun Pembeli, serta data pesanan dummy.*
 
 7. **Kompilasi Aset Frontend:**
    ```bash
@@ -85,19 +121,6 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek CeMas di komputer lokal A
    php artisan serve
    ```
    Aplikasi dapat diakses melalui `http://localhost:8000`.
-
-## Akun Default (Hasil Seeder)
-
-Untuk keperluan *testing*, Anda dapat menggunakan kredensial berikut setelah menjalankan seeder:
-
-| Role | Email | Password |
-| :--- | :--- | :--- |
-| **Admin** | `admin@cemas.com` | `password` |
-| **Penjual (Toko Budi Jaya)** | `budi@cemas.com` | `password` |
-| **Penjual (Aminah Collection)** | `aminah@cemas.com` | `password` |
-| **Penjual (Andi Elektronik)** | `andi@cemas.com` | `password` |
-| **Pembeli 1** | `joko@cemas.com` | `password` |
-| **Pembeli 2** | `siti@cemas.com` | `password` |
 
 ---
 *Dibuat dengan ❤️ untuk warga Perumahan Aston Villa.*
